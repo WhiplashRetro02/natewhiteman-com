@@ -3,8 +3,8 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base
-  title="Annabeth — Agentic OSINT Operator Console | Nate Whiteman"
-  description="Annabeth is an AI-powered OSINT operator console for private investigators. Agentic workflows, entity graphing, evidence chain-of-custody, and social engineering campaign management — orchestrated by Claude."
+  title="Annabeth — AI-Powered Investigation Platform | Nate Whiteman"
+  description="Annabeth is a proprietary AI-powered intelligence platform for private investigators and red teams. Agentic workflows, automated reconnaissance, and legally defensible evidence management."
 >
 
   <style>
@@ -113,6 +113,7 @@ import Base from '../layouts/Base.astro';
       cursor: pointer;
       transition: all var(--duration-base) var(--ease-out);
       text-decoration: none;
+      display: inline-block;
     }
 
     .btn--blue:hover {
@@ -287,95 +288,68 @@ import Base from '../layouts/Base.astro';
       font-size: 13px;
       color: var(--text-tertiary);
       line-height: 1.7;
-      margin-bottom: var(--space-md);
     }
 
-    .cap-stack {
+    /* --- HOW IT WORKS --- */
+    .how-track {
       display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
+      align-items: stretch;
+      gap: 0;
     }
 
-    .cap-stack span {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-tertiary);
-    }
-
-    /* --- ARCHITECTURE --- */
-    .arch-section {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-default);
-      padding: var(--space-2xl);
-      margin: var(--space-xl) 0;
-    }
-
-    .arch-title {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent-muted);
-      margin-bottom: var(--space-xl);
-      text-align: center;
-    }
-
-    .arch-layers {
+    .how-step {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .arch-layer {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .arch-node {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.5px;
-      padding: 10px 18px;
+      gap: var(--space-md);
+      padding: var(--space-xl) var(--space-lg);
+      background: var(--bg-elevated);
       border: 1px solid var(--border-default);
-      color: var(--text-tertiary);
-      text-align: center;
-      background: var(--bg-card);
-      min-width: 120px;
-      transition: all var(--duration-base);
+      position: relative;
+      transition: background var(--duration-base);
     }
 
-    .arch-node.primary {
-      border-color: var(--node-blue);
-      color: var(--node-blue);
-      background: rgba(94, 141, 186, 0.06);
+    .how-step:not(:last-child) {
+      border-right: none;
     }
 
-    .arch-node.ai {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-glow);
+    .how-step:hover {
+      background: var(--bg-surface);
     }
 
-    .arch-node.data {
-      border-color: var(--node-green);
-      color: var(--node-green);
-      background: rgba(109, 186, 94, 0.06);
+    .how-step::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--node-blue);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--duration-slow) var(--ease-out);
     }
 
-    .arch-connector {
-      text-align: center;
-      color: var(--text-ghost);
+    .how-step:hover::before {
+      transform: scaleX(1);
+    }
+
+    .how-step-num {
       font-family: var(--font-mono);
-      font-size: 12px;
-      line-height: 1;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--accent-muted);
+    }
+
+    .how-step-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .how-step-desc {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      line-height: 1.7;
     }
 
     /* --- PERSONA SECTION --- */
@@ -519,6 +493,8 @@ import Base from '../layouts/Base.astro';
       .persona-grid { grid-template-columns: 1fr; }
       .skpi-banner { grid-template-columns: 1fr; }
       .an-stats { grid-template-columns: repeat(2, 1fr); }
+      .how-track { flex-direction: column; }
+      .how-step:not(:last-child) { border-right: 1px solid var(--border-default); border-bottom: none; }
     }
 
     @media (max-width: 768px) {
@@ -533,25 +509,23 @@ import Base from '../layouts/Base.astro';
         <div>
           <div class="an-badge">
             <span class="an-badge-dot"></span>
-            Active Development · MVP
+            Active Development · Proprietary
           </div>
           <h1 class="an-title">
             Annabeth
-            <span class="subtitle">Agentic OSINT Operator Console</span>
+            <span class="subtitle">AI-Powered Investigation Platform</span>
           </h1>
           <p class="an-tagline">Blue hat intelligence. Ethical by architecture.</p>
           <p class="an-desc">
-            Annabeth is an AI-powered investigation platform that turns natural language
+            Annabeth is a proprietary AI investigation platform that turns natural language
             commands into structured intelligence operations. Built for private investigators,
-            red teams, and compliance professionals — it orchestrates OSINT collection,
-            entity graphing, evidence chain-of-custody, and social engineering campaign
-            management through an agentic Claude integration with tiered autonomy controls.
+            red teams, and compliance professionals — it orchestrates automated reconnaissance,
+            relationship mapping, evidence chain-of-custody, and adversarial campaign management
+            through an agentic AI core with tiered operator controls.
           </p>
           <div class="an-ctas">
-            <a href="https://github.com/WhiplashRetro02/annabeth" class="btn--blue" target="_blank" rel="noopener">
-              View on GitHub
-            </a>
-            <a href="/#contact" class="btn btn--ghost">Discuss the Project</a>
+            <a href="/services#inquiry" class="btn--blue">Discuss the Platform</a>
+            <a href="/#contact" class="btn btn--ghost">Get in Touch</a>
           </div>
         </div>
 
@@ -570,24 +544,23 @@ import Base from '../layouts/Base.astro';
             </div>
           </div>
           <div class="console-body">
-            <div class="console-line"><span class="c-time">08:05:12</span> <span class="c-tool">dns_analyzer</span> <span class="c-type">MX</span> <span class="c-val">mx1.pinnaclefg.com (Mimecast)</span> <span class="c-sev-conf">CONFIRMED</span></div>
-            <div class="console-line"><span class="c-time">08:05:13</span> <span class="c-tool">dns_analyzer</span> <span class="c-type">SPF</span> <span class="c-val">v=spf1 include:mimecast ~all</span> <span class="c-sev-high">HIGH</span></div>
-            <div class="console-line"><span class="c-time">08:05:13</span> <span class="c-tool">dns_analyzer</span> <span class="c-type">DMARC</span> <span class="c-val">p=none; rua=mailto:dmarc@...</span> <span class="c-sev-crit">CRITICAL</span></div>
-            <div class="console-line"><span class="c-time">08:05:14</span> <span class="c-tool">dns_analyzer</span> <span class="c-type">DKIM</span> <span class="c-val">google selector, 2048-bit</span> <span class="c-sev-conf">CONFIRMED</span></div>
+            <div class="console-line"><span class="c-time">08:05:12</span> <span class="c-tool">recon</span> <span class="c-type">MX</span> <span class="c-val">mx1.target.com (email gateway identified)</span> <span class="c-sev-conf">CONFIRMED</span></div>
+            <div class="console-line"><span class="c-time">08:05:13</span> <span class="c-tool">recon</span> <span class="c-type">SPF</span> <span class="c-val">soft-fail policy detected</span> <span class="c-sev-high">HIGH</span></div>
+            <div class="console-line"><span class="c-time">08:05:13</span> <span class="c-tool">recon</span> <span class="c-type">DMARC</span> <span class="c-val">p=none — monitoring only, no enforcement</span> <span class="c-sev-crit">CRITICAL</span></div>
+            <div class="console-line"><span class="c-time">08:05:14</span> <span class="c-tool">recon</span> <span class="c-type">DKIM</span> <span class="c-val">2048-bit key present</span> <span class="c-sev-conf">CONFIRMED</span></div>
             <hr class="console-divider" />
-            <div class="console-line"><span class="c-ai">CLAUDE (Analyst):</span></div>
+            <div class="console-line"><span class="c-ai">ANNABETH (Analyst):</span></div>
             <div class="console-line"><span class="c-val">BLUF: Email infrastructure vulnerable to domain spoofing.</span></div>
-            <div class="console-line"><span class="c-val">DMARC p=none — monitoring mode, no enforcement.</span></div>
-            <div class="console-line"><span class="c-val">SPF soft fail + DMARC none = spoofed emails deliver.</span></div>
-            <div class="console-line"><span class="c-val">Evidence captured → EV-0047-004 (SHA-256: c1a9f7...d2b3)</span></div>
+            <div class="console-line"><span class="c-val">DMARC monitoring mode — no enforcement active.</span></div>
+            <div class="console-line"><span class="c-val">Soft-fail + no enforcement = spoofed emails deliver.</span></div>
+            <div class="console-line"><span class="c-val">Evidence captured → EV-0047-004 (verified, timestamped)</span></div>
             <hr class="console-divider" />
-            <div class="console-line"><span class="c-time">08:12:34</span> <span class="c-tool">HIBP</span> <span class="c-type">BREACH</span> <span class="c-val">j.martinez@ — LinkedIn 2021</span> <span class="c-sev-crit">CRITICAL</span></div>
-            <div class="console-line"><span class="c-time">08:12:35</span> <span class="c-tool">HIBP</span> <span class="c-type">BREACH</span> <span class="c-val">j.martinez@ — Adobe 2013</span> <span class="c-sev-crit">CRITICAL</span></div>
-            <div class="console-line"><span class="c-time">08:12:41</span> <span class="c-tool">HIBP</span> <span class="c-type">BREACH</span> <span class="c-val">d.kim@ — Dropbox 2012</span> <span class="c-sev-crit">CRITICAL</span></div>
-            <div class="console-line"><span class="c-time">08:12:47</span> <span class="c-tool">HIBP</span> <span class="c-type">BREACH</span> <span class="c-val">r.torres@ — MyFitnessPal 2018</span> <span class="c-sev-high">HIGH</span></div>
+            <div class="console-line"><span class="c-time">08:12:34</span> <span class="c-tool">breach</span> <span class="c-type">EXPOSURE</span> <span class="c-val">j.martinez@ — 2 prior breach events</span> <span class="c-sev-crit">CRITICAL</span></div>
+            <div class="console-line"><span class="c-time">08:12:41</span> <span class="c-tool">breach</span> <span class="c-type">EXPOSURE</span> <span class="c-val">d.kim@ — plaintext credential exposure</span> <span class="c-sev-crit">CRITICAL</span></div>
+            <div class="console-line"><span class="c-time">08:12:47</span> <span class="c-tool">breach</span> <span class="c-type">EXPOSURE</span> <span class="c-val">r.torres@ — recent credential event</span> <span class="c-sev-high">HIGH</span></div>
             <hr class="console-divider" />
             <div class="console-line"><span class="c-prompt">YOU:</span> <span class="c-val">Deploy SE-001 at 10:15. Set a timer.</span></div>
-            <div class="console-line"><span class="c-ai">CLAUDE:</span> <span class="c-val">SE-001 staged. Deploying at 10:15 EDT.</span></div>
+            <div class="console-line"><span class="c-ai">ANNABETH:</span> <span class="c-val">SE-001 staged. Awaiting approval gate. Deploying at 10:15 EDT.</span></div>
             <hr class="console-divider" />
             <div class="console-line"><span class="c-time">10:23:14</span> <span class="c-sev-crit">⚡ SE-001: r.torres@ OPENED email</span></div>
             <div class="console-line"><span class="c-time">10:23:25</span> <span class="c-sev-crit">⚡ SE-001: r.torres@ CLICKED link</span></div>
@@ -605,15 +578,15 @@ import Base from '../layouts/Base.astro';
       <div class="an-stats animate-in">
         <div class="an-stat">
           <div class="an-stat-num">12<span class="unit">cmds</span></div>
-          <div class="an-stat-label">Operator keystrokes per session</div>
+          <div class="an-stat-label">Operator inputs per session</div>
         </div>
         <div class="an-stat">
           <div class="an-stat-num">~140</div>
-          <div class="an-stat-label">Autonomous tool calls</div>
+          <div class="an-stat-label">Autonomous actions executed</div>
         </div>
         <div class="an-stat">
           <div class="an-stat-num">4<span class="unit">hrs</span></div>
-          <div class="an-stat-label">Replaces 3-4 days manual work</div>
+          <div class="an-stat-label">Replaces 3–4 days manual work</div>
         </div>
         <div class="an-stat">
           <div class="an-stat-num">72</div>
@@ -635,50 +608,34 @@ import Base from '../layouts/Base.astro';
       <div class="cap-grid">
         <div class="cap-card animate-in stagger-1">
           <div class="cap-icon">⦿</div>
-          <div class="cap-name">Agentic Claude Integration</div>
+          <div class="cap-name">Agentic AI Core</div>
           <div class="cap-desc">
-            Claude operates as your embedded analyst with three adaptive personas — Analyst,
-            Red Team, and Report — switching context based on the task. Tiered autonomy controls
-            let routine recon run hands-free while flagging sensitive actions for operator approval.
-          </div>
-          <div class="cap-stack">
-            <span>Claude Opus</span>
-            <span>Claude Sonnet</span>
-            <span>Persona System</span>
-            <span>Tier 1/2 Autonomy</span>
+            Annabeth runs on a purpose-built agentic AI layer with three adaptive operating
+            modes — Analyst, Red Team, and Report. It switches context based on what the
+            engagement requires, executing routine intelligence tasks hands-free while
+            surfacing sensitive actions to the operator for approval.
           </div>
         </div>
 
         <div class="cap-card animate-in stagger-2">
           <div class="cap-icon">◇</div>
-          <div class="cap-name">Entity Graph & Community Detection</div>
+          <div class="cap-name">Relationship Intelligence Graph</div>
           <div class="cap-desc">
-            Every person, domain, breach, and infrastructure element is automatically mapped into
-            a Neo4j knowledge graph. Louvain community detection identifies clusters — executive
-            groups, IT infrastructure, vendor chains — and pinpoints bridge nodes for attack path analysis.
-          </div>
-          <div class="cap-stack">
-            <span>Neo4j</span>
-            <span>Cypher</span>
-            <span>GDS Louvain</span>
-            <span>Force-Directed Layout</span>
+            Every entity discovered — people, domains, infrastructure, exposure events — is
+            automatically mapped into a living relationship graph. Cluster analysis identifies
+            organizational structures, executive groups, and vendor chains. Bridge nodes reveal
+            the highest-leverage attack paths before a human analyst would spot them.
           </div>
         </div>
 
         <div class="cap-card animate-in stagger-3">
           <div class="cap-icon">△</div>
-          <div class="cap-name">OSINT Reconnaissance Pipeline</div>
+          <div class="cap-name">Automated Reconnaissance</div>
           <div class="cap-desc">
-            Automated DNS infrastructure analysis, HIBP breach correlation, executive exposure
-            sweeps, vendor chain discovery, and Google dorking — all orchestrated through Celery
-            task queues with real-time SSE streaming to the operator console.
-          </div>
-          <div class="cap-stack">
-            <span>DNS Analysis</span>
-            <span>HIBP</span>
-            <span>Sherlock</span>
-            <span>OSINT Industries</span>
-            <span>Celery</span>
+            Multi-source intelligence collection runs in parallel: infrastructure analysis,
+            credential exposure correlation, executive and personnel profiling, vendor chain
+            discovery, and open-source enumeration — all fed into the entity graph in real time
+            and streamed live to the operator console.
           </div>
         </div>
 
@@ -686,103 +643,94 @@ import Base from '../layouts/Base.astro';
           <div class="cap-icon">□</div>
           <div class="cap-name">Social Engineering Campaign Management</div>
           <div class="cap-desc">
-            Design, stage, deploy, and monitor phishing campaigns with per-recipient tracking —
-            open rates, click rates, credential captures, and time-to-click metrics. Live Recharts
-            funnel visualization and automatic evidence capture on every event.
-          </div>
-          <div class="cap-stack">
-            <span>Phishing</span>
-            <span>Pretexting</span>
-            <span>Tracking Pixels</span>
-            <span>Credential Capture</span>
+            Design, stage, deploy, and monitor adversarial campaigns with per-recipient behavioral
+            tracking — opens, clicks, credential submissions, and time-to-action metrics.
+            Every event is automatically captured as evidence. Operator approval gates are
+            enforced before any campaign deployment.
           </div>
         </div>
 
         <div class="cap-card animate-in stagger-5">
           <div class="cap-icon">◎</div>
-          <div class="cap-name">Evidence Chain of Custody</div>
+          <div class="cap-name">Legally Defensible Evidence</div>
           <div class="cap-desc">
-            Every finding is automatically captured with SHA-256 hashing, timestamped custody
-            events, and immutable storage in MinIO. Evidence artifacts are legally defensible
-            and cross-referenced against the entity graph and operation timeline.
-          </div>
-          <div class="cap-stack">
-            <span>SHA-256</span>
-            <span>MinIO</span>
-            <span>PostgreSQL</span>
-            <span>Custody Logging</span>
+            Every finding is automatically preserved with cryptographic integrity verification,
+            sequential custody events, and immutable storage. Evidence artifacts are traceable
+            back to the raw source, timestamped, and cross-referenced against the operation
+            timeline — built to withstand scrutiny in legal and compliance contexts.
           </div>
         </div>
 
         <div class="cap-card animate-in stagger-6">
           <div class="cap-icon">⬡</div>
-          <div class="cap-name">Obsidian Vault Sync</div>
+          <div class="cap-name">Living Case File</div>
           <div class="cap-desc">
-            Every entity, finding, and analysis auto-syncs to an Obsidian vault with backlinks.
-            Click on a person node and see their role, breach exposure, graph connections, and
-            every evidence ID — all interlinked in markdown with full graph view support.
-          </div>
-          <div class="cap-stack">
-            <span>Obsidian</span>
-            <span>Markdown</span>
-            <span>Backlinks</span>
-            <span>Graph View</span>
+            Every entity, finding, and analysis automatically populates a structured case file
+            with full cross-linking. Click any person node and see their role, exposure history,
+            graph connections, and every piece of collected evidence — organized and interlinked
+            without manual documentation.
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ ARCHITECTURE ============ -->
+  <!-- ============ HOW IT WORKS ============ -->
   <section class="section">
     <div class="container">
       <div class="section-label animate-in">
         <span class="section-num">02</span>
-        <h2 class="section-heading">Architecture</h2>
+        <h2 class="section-heading">How It Works</h2>
         <div class="section-rule"></div>
       </div>
 
-      <div class="arch-section animate-in">
-        <div class="arch-title">System Architecture</div>
-        <div class="arch-layers">
-          <div class="arch-layer">
-            <div class="arch-node primary">Operator Console (React)</div>
+      <div class="how-track animate-in stagger-1">
+        <div class="how-step">
+          <div class="how-step-num">01</div>
+          <div class="how-step-title">Operator Issues a Command</div>
+          <div class="how-step-desc">
+            Natural language. No syntax, no scripts. "Run recon on this domain." "Who are the
+            financial approvers?" "Design a campaign targeting the AP team." Annabeth interprets
+            intent and builds the execution plan.
           </div>
-          <div class="arch-connector">↕</div>
-          <div class="arch-layer">
-            <div class="arch-node ai">Claude Analyst</div>
-            <div class="arch-node ai">Claude Red Team</div>
-            <div class="arch-node ai">Claude Report</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">02</div>
+          <div class="how-step-title">Automated Intelligence Collection</div>
+          <div class="how-step-desc">
+            Annabeth executes dozens of intelligence-gathering actions in parallel — infrastructure
+            analysis, exposure correlation, personnel profiling, and more — streaming findings
+            live as they surface. The operator watches it work.
           </div>
-          <div class="arch-connector">↕</div>
-          <div class="arch-layer">
-            <div class="arch-node primary">Orchestration Layer (Celery + SSE)</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">03</div>
+          <div class="how-step-title">Graph-Driven Analysis</div>
+          <div class="how-step-desc">
+            Findings don't sit in a spreadsheet. They flow into a live relationship graph that
+            connects people, systems, and vulnerabilities. AI analysis identifies the patterns
+            and attack paths a human analyst would need hours to find manually.
           </div>
-          <div class="arch-connector">↕ &nbsp;&nbsp; ↕ &nbsp;&nbsp; ↕ &nbsp;&nbsp; ↕</div>
-          <div class="arch-layer">
-            <div class="arch-node">DNS Tools</div>
-            <div class="arch-node">HIBP API</div>
-            <div class="arch-node">OSINT APIs</div>
-            <div class="arch-node">SE Engine</div>
-          </div>
-          <div class="arch-connector">↕</div>
-          <div class="arch-layer">
-            <div class="arch-node data">Neo4j Graph</div>
-            <div class="arch-node data">PostgreSQL</div>
-            <div class="arch-node data">MinIO Evidence</div>
-            <div class="arch-node data">Obsidian Vault</div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">04</div>
+          <div class="how-step-title">Documented, Defensible Output</div>
+          <div class="how-step-desc">
+            Every finding is preserved with cryptographic integrity, every action logged, and
+            every conclusion traced to a source. The platform produces client-ready reports and
+            a legally defensible evidence record — automatically.
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ AI PERSONAS ============ -->
+  <!-- ============ AI MODES ============ -->
   <section class="section">
     <div class="container">
       <div class="section-label animate-in">
         <span class="section-num">03</span>
-        <h2 class="section-heading">Adaptive AI Personas</h2>
+        <h2 class="section-heading">Three Operating Modes</h2>
         <div class="section-rule"></div>
       </div>
 
@@ -794,9 +742,9 @@ import Base from '../layouts/Base.astro';
           </div>
           <div class="persona-name">Analyst</div>
           <div class="persona-desc">
-            Structured intelligence analysis. BLUF-first reporting.
-            Confidence-scored findings with source reliability ratings (A-1 through F-6).
-            Executes Tier 1 autonomous tasks — DNS, HIBP, entity graph construction.
+            Structured intelligence analysis with BLUF-first reporting. Confidence-scored
+            findings. Runs automated collection tasks autonomously and surfaces results with
+            source reliability ratings — optimized for speed and thoroughness.
           </div>
         </div>
         <div class="persona-cell">
@@ -806,9 +754,10 @@ import Base from '../layouts/Base.astro';
           </div>
           <div class="persona-name">Red Team</div>
           <div class="persona-desc">
-            Adversarial thinking. Attack path analysis ranked by feasibility,
-            impact, and detection risk. Kill chain mapping. SE campaign design.
-            Escalates to Claude Opus for complex multi-step reasoning.
+            Adversarial thinking and attack path analysis ranked by feasibility, impact,
+            and detection risk. Kill chain mapping and campaign design. Engages deeper
+            reasoning for complex multi-step scenarios. Operator approval required before
+            any deployment action.
           </div>
         </div>
         <div class="persona-cell">
@@ -818,9 +767,9 @@ import Base from '../layouts/Base.astro';
           </div>
           <div class="persona-name">Report</div>
           <div class="persona-desc">
-            Client-facing prose. Formal, objective, legally precise.
-            Executive summaries for CEOs, technical detail for CISOs.
-            Every claim traced to an evidence ID. Tier 2 approval required.
+            Client-facing documentation. Formal, objective, legally precise. Executive
+            summaries for leadership, technical detail for security teams. Every claim
+            is automatically traced to a verified evidence ID.
           </div>
         </div>
       </div>
@@ -838,61 +787,63 @@ import Base from '../layouts/Base.astro';
 
       <p class="animate-in" style="font-size: 16px; color: var(--text-secondary); line-height: 1.8; margin-bottom: var(--space-xl);">
         Four hours. Twelve natural language commands. Here's what Annabeth produces
-        in a single morning session on a $12,000 red team engagement.
+        in a single morning session on a red team engagement.
       </p>
 
       <div class="session-block animate-in stagger-1">
         <div class="session-time">08:00 – 08:12</div>
-        <div class="session-title">DNS Infrastructure Analysis</div>
+        <div class="session-title">Infrastructure Analysis</div>
         <div class="session-desc">
-          Two words typed: "Go." Claude autonomously analyzes SPF, DMARC, and DKIM
-          records. Discovers DMARC policy set to monitoring mode with no enforcement —
-          the entire domain is spoofable. Finding captured, hashed, and stored in 7 minutes.
+          Two words typed: "Go." Annabeth autonomously maps the target's email infrastructure
+          and discovers the entire domain is spoofable — a policy misconfiguration that
+          takes manual analysts hours to find. Finding captured, integrity-verified, and
+          documented in 7 minutes.
         </div>
         <div class="session-result">→ 1 CRITICAL finding · Evidence auto-captured</div>
       </div>
 
       <div class="session-block animate-in stagger-2">
         <div class="session-time">08:12 – 08:22</div>
-        <div class="session-title">Batch Breach Correlation</div>
+        <div class="session-title">Credential Exposure Correlation</div>
         <div class="session-desc">
-          23 harvested emails checked against HIBP. Seven hits. The CFO has a plaintext
-          password exposure from 2013 that reveals a predictable credential pattern.
-          Cross-referenced against the org chart to identify financial authority.
+          23 personnel email addresses checked against historical breach data. Seven hits.
+          The CFO has a plaintext password exposure that reveals a predictable credential
+          pattern. Cross-referenced against the org chart to identify financial authority.
         </div>
         <div class="session-result">→ 3 CRITICAL personnel findings · Entity graph auto-populated</div>
       </div>
 
       <div class="session-block animate-in stagger-3">
         <div class="session-time">08:22 – 08:55</div>
-        <div class="session-title">Entity Graph + Attack Path Analysis</div>
+        <div class="session-title">Graph Analysis &amp; Attack Path Development</div>
         <div class="session-desc">
-          Full knowledge graph built: 68 nodes, 89 edges, 4 communities detected via
-          Louvain algorithm. Claude escalates to Opus, switches to Red Team persona, and
-          delivers 3 ranked attack paths with kill chains, feasibility scores, and detection risk.
+          Full relationship graph built across the target organization: people, systems,
+          vendors, and exposures linked and analyzed. AI switches to Red Team mode and
+          delivers 3 ranked attack paths with kill chains, feasibility scores, and detection
+          risk assessments.
         </div>
-        <div class="session-result">→ CFO identified as highest betweenness centrality node</div>
+        <div class="session-result">→ CFO identified as highest-leverage target node</div>
       </div>
 
       <div class="session-block animate-in stagger-4">
         <div class="session-time">08:55 – 10:15</div>
-        <div class="session-title">SE Campaign Design & Staging</div>
+        <div class="session-title">Campaign Design &amp; Staging</div>
         <div class="session-desc">
-          Phishing campaign designed from entity graph intelligence: spoofed CFO email
-          to AP team exploiting DMARC vulnerability. Per-recipient tracking, credential
-          capture landing page, automated redirect to reduce suspicion. Tier 2 approval
-          gate enforced before deployment.
+          Phishing campaign designed directly from intelligence collected in earlier phases —
+          exploiting the infrastructure vulnerability and a specific personnel exposure.
+          Per-recipient tracking configured. Approval gate enforced. Operator authorized
+          deployment at 10:15.
         </div>
-        <div class="session-result">→ SE-001 staged and deployed at 10:15 EDT</div>
+        <div class="session-result">→ SE-001 staged and approved for deployment</div>
       </div>
 
       <div class="session-block animate-in stagger-5">
         <div class="session-time">10:24</div>
         <div class="session-title">Credential Captured</div>
         <div class="session-desc">
-          52 seconds. From email open to credential submission. An AP specialist entered
+          52 seconds. From email open to credential submission. A target employee entered
           corporate credentials on the simulated attacker portal. Zero employees reported
-          the phishing email to IT security — the most important finding in the engagement.
+          the phishing attempt to IT security — the most important finding in the engagement.
         </div>
         <div class="session-result">→ Attack Path 1 validated · 0% report rate</div>
       </div>
@@ -912,10 +863,11 @@ import Base from '../layouts/Base.astro';
         <div class="skpi-text">
           <h3>South Knox Private Investigators</h3>
           <p>
-            Annabeth is the operating system for SKPI — a Knoxville-based private
-            investigation practice specializing in blue hat OSINT, corporate red team
+            Annabeth is the proprietary operating platform for SKPI — a Knoxville-based
+            private investigation practice specializing in blue hat OSINT, corporate red team
             engagements, executive exposure assessments, and vendor chain analysis.
-            The platform is built to make a solo operator as effective as a five-person team.
+            The platform is built to make a solo operator as effective as a five-person team,
+            with a defensible evidence record built at every step.
           </p>
         </div>
         <div class="skpi-details">
@@ -952,11 +904,12 @@ import Base from '../layouts/Base.astro';
           Interested in <span class="italic-accent">Annabeth</span>?
         </h2>
         <p class="contact-sub">
-          Whether you're in the investigation space, interested in agentic AI architecture,
-          or want to talk about building operator-grade tooling — let's connect.
+          Whether you're in the investigation or security space, looking for red team
+          capability, or want to discuss what AI-powered intelligence tooling can do
+          for your organization — let's talk.
         </p>
         <div class="contact-channels">
-          <a href="https://github.com/WhiplashRetro02/annabeth" class="contact-channel" target="_blank" rel="noopener">GitHub</a>
+          <a href="/services#inquiry" class="contact-channel">Request a Conversation</a>
           <a href="mailto:nate@natewhiteman.com" class="contact-channel">Email</a>
           <a href="https://linkedin.com/in/nathaniel-whiteman" class="contact-channel" target="_blank" rel="noopener">LinkedIn</a>
         </div>
