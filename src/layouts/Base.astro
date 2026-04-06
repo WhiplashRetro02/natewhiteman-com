@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
   title?: string;
   description?: string;
@@ -74,8 +76,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     }
   })} />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="/styles/global.css" />
+  <!-- Styles injected by Astro via frontmatter import -->
 </head>
 <body>
   <!-- Ambient background layers -->
