@@ -1,0 +1,509 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5);
+
+const dateFormat = (date: Date) =>
+  date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+---
+
+<Base>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-layout">
+        <div class="hero-content">
+          <div class="hero-eyebrow hero-enter">Data & AI Leadership</div>
+          <h1 class="hero-title hero-enter hero-enter-delay-1">
+            <span class="line">I build the</span>
+            <span class="line">systems that</span>
+            <span class="line">make AI <span class="italic-accent">think</span></span>
+          </h1>
+          <p class="hero-description hero-enter hero-enter-delay-2">
+            Agentic architectures. Knowledge graphs. The infrastructure layer
+            between raw data and real intelligence. Cognitive science foundation,
+            engineering execution, leadership instinct.
+          </p>
+          <div class="hero-actions hero-enter hero-enter-delay-3">
+            <a href="#projects" class="btn btn--primary">View Projects</a>
+            <a href="#contact" class="btn btn--ghost">Let's Connect</a>
+          </div>
+        </div>
+
+        <div class="hero-terminal hero-enter hero-enter-delay-2">
+          <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">nate.config.ts</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line">
+              <span class="t-key">role</span>
+              <span class="t-val">Data Scientist & AI Engineer</span>
+            </div>
+            <div class="terminal-line">
+              <span class="t-key">org</span>
+              <span class="t-val">CGI</span>
+            </div>
+            <div class="terminal-line">
+              <span class="t-key">focus</span>
+              <span class="t-val highlight">Agentic RAG · Knowledge Graphs</span>
+            </div>
+            <div class="terminal-line">
+              <span class="t-key">education</span>
+              <span class="t-val">B.S. Cognitive Sciences, UCLA</span>
+            </div>
+            <div class="terminal-line">
+              <span class="t-key">stack</span>
+              <span class="t-val">TS · React · Neo4j · Cloudflare</span>
+            </div>
+            <div class="terminal-line">
+              <span class="t-key">location</span>
+              <span class="t-val">Knoxville, TN</span>
+            </div>
+            <div class="terminal-line">
+              <span class="t-key">status</span>
+              <span class="t-val live"><span class="status-pulse"></span>Open to opportunities</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-label animate-in">
+        <span class="section-num">01</span>
+        <h2 class="section-heading">About</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="about-split">
+        <div class="about-column animate-in stagger-1">
+          <p>
+            Most AI initiatives fail at the data layer. That's where I work.
+          </p>
+          <p>
+            I design the architecture that makes AI enablement real — not theoretical.
+            <strong>Graph databases</strong> for knowledge representation.
+            <strong>Agentic RAG pipelines</strong> for intelligent retrieval.
+            <strong>MCP-based tooling</strong> that gives AI systems access to the
+            data they actually need.
+          </p>
+          <div class="pullquote">
+            I studied how humans think. Now I build systems that do the same thing.
+          </div>
+          <p>
+            My background is atypical — a <strong>B.S. in Cognitive Sciences from UCLA</strong>,
+            not a traditional CS path. I studied how humans encode, retrieve, and reason
+            about information, and I build AI systems through that same lens.
+          </p>
+          <p>
+            I'm focused on the leadership side of this work: building teams that
+            operationalize AI, defining technical strategy, and translating between
+            data engineering, ML, and business outcomes. The hardest AI problems
+            aren't model problems. They're people, process, and data architecture problems.
+          </p>
+        </div>
+
+        <div class="about-column animate-in stagger-2">
+          <div class="credentials">
+            <div class="credential-row">
+              <span class="credential-key">Education</span>
+              <span class="credential-val">
+                B.S. Cognitive Sciences, UCLA
+                <small>Specialization in human information processing & retrieval</small>
+              </span>
+            </div>
+            <div class="credential-row">
+              <span class="credential-key">Leadership</span>
+              <span class="credential-val">
+                UCLA IFC President
+                <small>Governed 30+ organizations · Multi-stakeholder operations at scale</small>
+              </span>
+            </div>
+            <div class="credential-row">
+              <span class="credential-key">Brotherhood</span>
+              <span class="credential-val">
+                Sigma Nu, Epsilon Pi Chapter
+                <small>University of California, Los Angeles</small>
+              </span>
+            </div>
+            <div class="credential-row">
+              <span class="credential-key">Current</span>
+              <span class="credential-val">
+                Data Scientist & AI Engineer, CGI
+                <small>Agentic systems · Graph AI · Enterprise enablement</small>
+              </span>
+            </div>
+            <div class="credential-row">
+              <span class="credential-key">Continuing Ed</span>
+              <span class="credential-val">
+                Pellissippi State → UT Knoxville
+                <small>Expanding into Anthropology & interdisciplinary research</small>
+              </span>
+            </div>
+            <div class="credential-row">
+              <span class="credential-key">Thesis</span>
+              <span class="credential-val">
+                Data Architecture > Model Selection
+                <small>How data is structured and retrieved determines whether AI works</small>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SYSTEMS / EXPERTISE ============ -->
+  <section class="section" id="systems">
+    <div class="container">
+      <div class="section-label animate-in">
+        <span class="section-num">02</span>
+        <h2 class="section-heading">Systems</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="systems-grid animate-in stagger-1">
+        <div class="system-cell">
+          <div class="system-glyph">⬡</div>
+          <div class="system-name">Agentic Systems</div>
+          <div class="system-desc">
+            AI agents that autonomously retrieve, reason, and act across data sources
+            using tool orchestration and multi-step planning.
+          </div>
+          <div class="system-stack">
+            <span>MCP</span>
+            <span>Claude Code</span>
+            <span>Tool Use</span>
+            <span>LangChain</span>
+          </div>
+        </div>
+
+        <div class="system-cell">
+          <div class="system-glyph">◇</div>
+          <div class="system-name">Knowledge Graphs</div>
+          <div class="system-desc">
+            Graph-based knowledge architectures that encode relationships, enable
+            traversal queries, and power contextual AI retrieval at scale.
+          </div>
+          <div class="system-stack">
+            <span>Neo4j</span>
+            <span>Cypher</span>
+            <span>Graph RAG</span>
+            <span>Ontology Design</span>
+          </div>
+        </div>
+
+        <div class="system-cell">
+          <div class="system-glyph">△</div>
+          <div class="system-name">RAG Architecture</div>
+          <div class="system-desc">
+            Retrieval-augmented generation pipelines optimized for precision,
+            context management, and domain-specific retrieval quality.
+          </div>
+          <div class="system-stack">
+            <span>Embeddings</span>
+            <span>Vector Search</span>
+            <span>Reranking</span>
+            <span>Chunking</span>
+          </div>
+        </div>
+
+        <div class="system-cell">
+          <div class="system-glyph">□</div>
+          <div class="system-name">Cloud Infrastructure</div>
+          <div class="system-desc">
+            Serverless-first data platforms, edge computing, and globally distributed
+            architectures built for performance and cost efficiency.
+          </div>
+          <div class="system-stack">
+            <span>Cloudflare Workers</span>
+            <span>D1</span>
+            <span>Databricks</span>
+            <span>AWS</span>
+          </div>
+        </div>
+
+        <div class="system-cell">
+          <div class="system-glyph">○</div>
+          <div class="system-name">Full-Stack Engineering</div>
+          <div class="system-desc">
+            Production applications from component-driven UI to type-safe API
+            layer to database. End-to-end ownership of the stack.
+          </div>
+          <div class="system-stack">
+            <span>TypeScript</span>
+            <span>React</span>
+            <span>Node.js</span>
+            <span>Python</span>
+          </div>
+        </div>
+
+        <div class="system-cell">
+          <div class="system-glyph">◎</div>
+          <div class="system-name">AI Strategy & Leadership</div>
+          <div class="system-desc">
+            Translating AI capabilities into organizational value through
+            stakeholder alignment, technical roadmapping, and team enablement.
+          </div>
+          <div class="system-stack">
+            <span>Roadmapping</span>
+            <span>Mentoring</span>
+            <span>Stakeholders</span>
+            <span>GTM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-label animate-in">
+        <span class="section-num">03</span>
+        <h2 class="section-heading">Projects</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="project-showcase">
+        <!-- FEATURED: Annabeth -->
+        <a class="project-card animate-in" href="/annabeth" style="border-color: rgba(94, 141, 186, 0.2); position: relative;">
+          <div class="project-info">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+              <span class="project-type">Current Project · MVP</span>
+              <span style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; background: rgba(94, 141, 186, 0.08); border: 1px solid rgba(94, 141, 186, 0.2); color: #5e8dba;">Active</span>
+            </div>
+            <h3 class="project-title" style="font-size: 32px;">Annabeth</h3>
+            <p class="project-blurb">
+              AI-powered OSINT operator console for private investigators and red teams.
+              Agentic Claude integration with tiered autonomy, Neo4j entity graphing,
+              evidence chain-of-custody, and social engineering campaign management.
+              Built for South Knox Private Investigators.
+            </p>
+            <div class="project-stack-list">
+              <span>Claude API</span>
+              <span>Neo4j</span>
+              <span>React</span>
+              <span>Celery</span>
+              <span>PostgreSQL</span>
+              <span>MinIO</span>
+              <span>Obsidian</span>
+            </div>
+            <span class="project-link-text">
+              View full project page <span class="arrow">&rarr;</span>
+            </span>
+          </div>
+          <div class="project-visual">
+            <div class="arch-diagram">
+              <div class="arch-row">
+                <div class="arch-box active" style="border-color: #5e8dba; color: #5e8dba;">Operator Console</div>
+              </div>
+              <div class="arch-connector">↕</div>
+              <div class="arch-row">
+                <div class="arch-box active">Claude Analyst</div>
+                <div class="arch-box active">Claude Red Team</div>
+              </div>
+              <div class="arch-connector">↕</div>
+              <div class="arch-row">
+                <div class="arch-box">Neo4j</div>
+                <div class="arch-box">PostgreSQL</div>
+                <div class="arch-box">MinIO</div>
+              </div>
+              <div class="arch-connector">↓</div>
+              <div class="arch-row">
+                <div class="arch-box active" style="border-color: #5e8dba; color: #5e8dba;">Obsidian Vault</div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Project 1: Graph RAG Engine -->
+        <a class="project-card animate-in stagger-1" href="#">
+          <div class="project-info">
+            <span class="project-type">Knowledge Infrastructure</span>
+            <h3 class="project-title">Graph RAG Engine</h3>
+            <p class="project-blurb">
+              Neo4j-powered knowledge graph pipeline that processes unstructured text
+              into queryable graph structures with LLM-driven Cypher generation and
+              contextual retrieval. Built for creative worldbuilding at scale.
+            </p>
+            <div class="project-stack-list">
+              <span>Neo4j</span>
+              <span>Python</span>
+              <span>LLM</span>
+              <span>Cypher</span>
+              <span>Graph RAG</span>
+            </div>
+            <span class="project-link-text">
+              View on GitHub <span class="arrow">&rarr;</span>
+            </span>
+          </div>
+          <div class="project-visual">
+            <div class="arch-diagram">
+              <div class="arch-row">
+                <div class="arch-box">Unstructured Text</div>
+              </div>
+              <div class="arch-connector">↓</div>
+              <div class="arch-row">
+                <div class="arch-box active">LLM Parser</div>
+                <div class="arch-box active">Entity Extractor</div>
+              </div>
+              <div class="arch-connector">↓</div>
+              <div class="arch-row">
+                <div class="arch-box active">Neo4j Graph DB</div>
+              </div>
+              <div class="arch-connector">↓</div>
+              <div class="arch-row">
+                <div class="arch-box">Cypher Gen</div>
+                <div class="arch-box">Traversal</div>
+                <div class="arch-box">Context</div>
+              </div>
+              <div class="arch-connector">↓</div>
+              <div class="arch-row">
+                <div class="arch-box active">RAG Response</div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Project 2: MCP Agentic Server -->
+        <a class="project-card animate-in stagger-2" href="#">
+          <div class="project-info">
+            <span class="project-type">Agentic AI Tooling</span>
+            <h3 class="project-title">MCP Agentic Server</h3>
+            <p class="project-blurb">
+              Custom Model Context Protocol servers enabling AI agents to access
+              Databricks and Neo4j data sources through unified tool interfaces.
+              Cross-system data access without manual ETL coordination.
+            </p>
+            <div class="project-stack-list">
+              <span>MCP</span>
+              <span>TypeScript</span>
+              <span>Databricks</span>
+              <span>Neo4j</span>
+              <span>Claude Code</span>
+            </div>
+            <span class="project-link-text">
+              View on GitHub <span class="arrow">&rarr;</span>
+            </span>
+          </div>
+          <div class="project-visual">
+            <div class="arch-diagram">
+              <div class="arch-row">
+                <div class="arch-box active">Claude / AI Agent</div>
+              </div>
+              <div class="arch-connector">↓</div>
+              <div class="arch-row">
+                <div class="arch-box active">MCP Server</div>
+              </div>
+              <div class="arch-connector">↓ &nbsp; ↓ &nbsp; ↓</div>
+              <div class="arch-row">
+                <div class="arch-box">Databricks</div>
+                <div class="arch-box">Neo4j</div>
+                <div class="arch-box">APIs</div>
+              </div>
+              <div class="arch-connector">↓</div>
+              <div class="arch-row">
+                <div class="arch-box active">Unified Response</div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Project 3: Analytics Dashboard -->
+        <a class="project-card animate-in stagger-3" href="#">
+          <div class="project-info">
+            <span class="project-type">Full-Stack Application</span>
+            <h3 class="project-title">Analytics Dashboard</h3>
+            <p class="project-blurb">
+              Personal finance and real estate analytics platform with interactive
+              data visualizations. React frontend, Cloudflare Workers/D1 backend,
+              deployed on the edge for sub-50ms response times globally.
+            </p>
+            <div class="project-stack-list">
+              <span>React</span>
+              <span>Recharts</span>
+              <span>Cloudflare Workers</span>
+              <span>D1</span>
+              <span>TypeScript</span>
+            </div>
+            <span class="project-link-text">
+              View on GitHub <span class="arrow">&rarr;</span>
+            </span>
+          </div>
+          <div class="project-visual">
+            <div class="arch-diagram">
+              <div class="arch-row">
+                <div class="arch-box active">React + Recharts UI</div>
+              </div>
+              <div class="arch-connector">↓</div>
+              <div class="arch-row">
+                <div class="arch-box">REST API</div>
+                <div class="arch-box active">CF Workers</div>
+              </div>
+              <div class="arch-connector">↓</div>
+              <div class="arch-row">
+                <div class="arch-box">D1 SQLite</div>
+                <div class="arch-box">KV Cache</div>
+              </div>
+              <div class="arch-connector">↓</div>
+              <div class="arch-row">
+                <div class="arch-box active">Edge Deploy (Global)</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WRITING ============ -->
+  <section class="section" id="writing">
+    <div class="container container--narrow">
+      <div class="section-label animate-in">
+        <span class="section-num">04</span>
+        <h2 class="section-heading">Thinking Out Loud</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="writing-feed animate-in stagger-1">
+        {posts.map((post) => (
+          <a class="writing-entry" href={`/writing/${post.slug}`}>
+            <span class="writing-date">{dateFormat(post.data.date)}</span>
+            <span class="writing-title">{post.data.title}</span>
+            <span class="writing-category">{post.data.tags[0] || 'essay'}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-block animate-in">
+        <h2 class="contact-heading">
+          Let's build<br>something <span class="italic-accent">real</span>
+        </h2>
+        <p class="contact-sub">
+          Open to conversations about AI leadership, data architecture,
+          agentic systems, and roles where I can make outsized impact.
+        </p>
+        <div class="contact-channels">
+          <a href="mailto:nate@natewhiteman.com" class="contact-channel">Email</a>
+          <a href="https://linkedin.com/in/nathaniel-whiteman" class="contact-channel" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/" class="contact-channel" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

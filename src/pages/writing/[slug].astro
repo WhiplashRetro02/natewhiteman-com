@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const dateFormat = (date: Date) =>
+  date.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+---
+
+<Base
+  title={`${post.data.title} — Nate Whiteman`}
+  description={post.data.description}
+>
+  <article class="container container--narrow">
+    <header class="post-header">
+      <div class="post-meta">
+        <span>{dateFormat(post.data.date)}</span>
+        {post.data.tags.map((tag: string) => (
+          <span style="text-transform: uppercase; letter-spacing: 1px;">{tag}</span>
+        ))}
+      </div>
+      <h1 class="post-h1">{post.data.title}</h1>
+      {post.data.description && (
+        <p class="post-subtitle">{post.data.description}</p>
+      )}
+    </header>
+
+    <div class="post-body">
+      <Content />
+    </div>
+
+    <div style="padding: 40px 0 120px; border-top: 1px solid var(--border-subtle);">
+      <a
+        href="/#writing"
+        style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-tertiary);"
+      >
+        &larr; Back to Thinking Out Loud
+      </a>
+    </div>
+  </article>
+</Base>

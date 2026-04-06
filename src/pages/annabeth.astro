@@ -1,0 +1,967 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Annabeth — Agentic OSINT Operator Console | Nate Whiteman"
+  description="Annabeth is an AI-powered OSINT operator console for private investigators. Agentic workflows, entity graphing, evidence chain-of-custody, and social engineering campaign management — orchestrated by Claude."
+>
+
+  <style>
+    /* --- ANNABETH PAGE STYLES --- */
+    .an-hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: var(--space-4xl) 0 var(--space-3xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .an-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 70% 20%, rgba(94, 141, 186, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 30% 80%, rgba(138, 109, 186, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .an-hero-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+
+    .an-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--node-blue);
+      margin-bottom: var(--space-lg);
+      padding: 6px 14px;
+      border: 1px solid rgba(94, 141, 186, 0.2);
+      background: rgba(94, 141, 186, 0.05);
+      width: fit-content;
+    }
+
+    .an-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--node-blue);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .an-title {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 7vw, 96px);
+      font-weight: 800;
+      letter-spacing: -3px;
+      line-height: 0.9;
+      margin-bottom: var(--space-md);
+    }
+
+    .an-title .subtitle {
+      display: block;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 0.35em;
+      letter-spacing: 0;
+      color: var(--text-secondary);
+      margin-top: 8px;
+    }
+
+    .an-tagline {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: var(--node-blue);
+      margin-bottom: var(--space-lg);
+    }
+
+    .an-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 500px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .an-ctas {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .btn--blue {
+      background: var(--node-blue);
+      color: var(--bg-void);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      border: none;
+      cursor: pointer;
+      transition: all var(--duration-base) var(--ease-out);
+      text-decoration: none;
+    }
+
+    .btn--blue:hover {
+      background: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    /* --- CONSOLE MOCKUP --- */
+    .console-mock {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-default);
+      overflow: hidden;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.7;
+      max-height: 520px;
+    }
+
+    .console-chrome {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.02);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .console-chrome .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .console-chrome .dot.r { background: #e05252; }
+    .console-chrome .dot.y { background: #e0c452; }
+    .console-chrome .dot.g { background: #52e07a; }
+    .console-chrome .tab-bar {
+      margin-left: 12px;
+      display: flex;
+      gap: 2px;
+    }
+    .console-chrome .tab {
+      padding: 4px 12px;
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      border: 1px solid transparent;
+    }
+    .console-chrome .tab.active {
+      color: var(--node-blue);
+      border-color: var(--border-default);
+      background: var(--bg-surface);
+    }
+
+    .console-body {
+      padding: 16px;
+      overflow-y: auto;
+      max-height: 440px;
+    }
+
+    .console-line {
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .c-time { color: var(--text-ghost); }
+    .c-tool { color: var(--node-purple); }
+    .c-type { color: var(--text-tertiary); }
+    .c-val  { color: var(--text-secondary); }
+    .c-sev-crit { color: #e05252; font-weight: 500; }
+    .c-sev-high { color: #e0a052; }
+    .c-sev-conf { color: var(--node-green); }
+    .c-prompt { color: var(--node-blue); }
+    .c-ai { color: var(--accent); }
+
+    .console-divider {
+      border: none;
+      border-top: 1px solid var(--border-subtle);
+      margin: 12px 0;
+    }
+
+    /* --- STATS BAR --- */
+    .an-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-subtle);
+      border: 1px solid var(--border-default);
+      margin: var(--space-3xl) 0;
+    }
+
+    .an-stat {
+      background: var(--bg-primary);
+      padding: var(--space-xl) var(--space-lg);
+      text-align: center;
+    }
+
+    .an-stat-num {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .an-stat-num .unit {
+      font-size: 16px;
+      color: var(--text-tertiary);
+      font-weight: 400;
+    }
+
+    .an-stat-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    /* --- CAPABILITIES --- */
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .cap-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-default);
+      padding: var(--space-xl);
+      transition: all var(--duration-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cap-card:hover {
+      border-color: var(--border-strong);
+      background: var(--bg-surface);
+    }
+
+    .cap-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--duration-slow) var(--ease-out);
+    }
+
+    .cap-card:hover::before { transform: scaleX(1); }
+    .cap-card:nth-child(1)::before { background: var(--node-blue); }
+    .cap-card:nth-child(2)::before { background: var(--node-green); }
+    .cap-card:nth-child(3)::before { background: var(--node-purple); }
+    .cap-card:nth-child(4)::before { background: var(--accent); }
+    .cap-card:nth-child(5)::before { background: var(--node-red); }
+    .cap-card:nth-child(6)::before { background: var(--node-blue); }
+
+    .cap-icon {
+      font-size: 24px;
+      margin-bottom: var(--space-md);
+      opacity: 0.6;
+    }
+
+    .cap-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+    }
+
+    .cap-desc {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      line-height: 1.7;
+      margin-bottom: var(--space-md);
+    }
+
+    .cap-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .cap-stack span {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-tertiary);
+    }
+
+    /* --- ARCHITECTURE --- */
+    .arch-section {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-default);
+      padding: var(--space-2xl);
+      margin: var(--space-xl) 0;
+    }
+
+    .arch-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-muted);
+      margin-bottom: var(--space-xl);
+      text-align: center;
+    }
+
+    .arch-layers {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .arch-layer {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .arch-node {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      padding: 10px 18px;
+      border: 1px solid var(--border-default);
+      color: var(--text-tertiary);
+      text-align: center;
+      background: var(--bg-card);
+      min-width: 120px;
+      transition: all var(--duration-base);
+    }
+
+    .arch-node.primary {
+      border-color: var(--node-blue);
+      color: var(--node-blue);
+      background: rgba(94, 141, 186, 0.06);
+    }
+
+    .arch-node.ai {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-glow);
+    }
+
+    .arch-node.data {
+      border-color: var(--node-green);
+      color: var(--node-green);
+      background: rgba(109, 186, 94, 0.06);
+    }
+
+    .arch-connector {
+      text-align: center;
+      color: var(--text-ghost);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    /* --- PERSONA SECTION --- */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border-subtle);
+      border: 1px solid var(--border-default);
+    }
+
+    .persona-cell {
+      background: var(--bg-primary);
+      padding: var(--space-xl);
+    }
+
+    .persona-indicator {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .persona-indicator .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+
+    .persona-indicator .dot.blue { background: var(--node-blue); }
+    .persona-indicator .dot.red { background: var(--node-red); }
+    .persona-indicator .dot.gold { background: var(--accent); }
+
+    .persona-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+    }
+
+    .persona-desc {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      line-height: 1.7;
+    }
+
+    /* --- WORK SESSION BLOCK --- */
+    .session-block {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-default);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-lg);
+    }
+
+    .session-time {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--node-blue);
+      margin-bottom: var(--space-sm);
+    }
+
+    .session-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+    }
+
+    .session-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .session-result {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--node-green);
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    /* --- SKPI SECTION --- */
+    .skpi-banner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-default);
+      padding: var(--space-2xl);
+    }
+
+    .skpi-text h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+    }
+
+    .skpi-text p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .skpi-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .skpi-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 13px;
+    }
+
+    .skpi-row:last-child { border-bottom: none; }
+
+    .skpi-key {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    .skpi-val {
+      color: var(--text-primary);
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 1024px) {
+      .an-hero-layout { grid-template-columns: 1fr; }
+      .console-mock { order: -1; max-height: 360px; }
+      .cap-grid { grid-template-columns: 1fr; }
+      .persona-grid { grid-template-columns: 1fr; }
+      .skpi-banner { grid-template-columns: 1fr; }
+      .an-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .an-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- ============ HERO ============ -->
+  <section class="an-hero">
+    <div class="container">
+      <div class="an-hero-layout">
+        <div>
+          <div class="an-badge">
+            <span class="an-badge-dot"></span>
+            Active Development · MVP
+          </div>
+          <h1 class="an-title">
+            Annabeth
+            <span class="subtitle">Agentic OSINT Operator Console</span>
+          </h1>
+          <p class="an-tagline">Blue hat intelligence. Ethical by architecture.</p>
+          <p class="an-desc">
+            Annabeth is an AI-powered investigation platform that turns natural language
+            commands into structured intelligence operations. Built for private investigators,
+            red teams, and compliance professionals — it orchestrates OSINT collection,
+            entity graphing, evidence chain-of-custody, and social engineering campaign
+            management through an agentic Claude integration with tiered autonomy controls.
+          </p>
+          <div class="an-ctas">
+            <a href="https://github.com/WhiplashRetro02/annabeth" class="btn--blue" target="_blank" rel="noopener">
+              View on GitHub
+            </a>
+            <a href="/#contact" class="btn btn--ghost">Discuss the Project</a>
+          </div>
+        </div>
+
+        <!-- LIVE CONSOLE MOCKUP -->
+        <div class="console-mock">
+          <div class="console-chrome">
+            <span class="dot r"></span>
+            <span class="dot y"></span>
+            <span class="dot g"></span>
+            <div class="tab-bar">
+              <span class="tab active">Operation</span>
+              <span class="tab">Recon</span>
+              <span class="tab">Graph</span>
+              <span class="tab">SE</span>
+              <span class="tab">Evidence</span>
+            </div>
+          </div>
+          <div class="console-body">
+            <div class="console-line"><span class="c-time">08:05:12</span> <span class="c-tool">dns_analyzer</span> <span class="c-type">MX</span> <span class="c-val">mx1.pinnaclefg.com (Mimecast)</span> <span class="c-sev-conf">CONFIRMED</span></div>
+            <div class="console-line"><span class="c-time">08:05:13</span> <span class="c-tool">dns_analyzer</span> <span class="c-type">SPF</span> <span class="c-val">v=spf1 include:mimecast ~all</span> <span class="c-sev-high">HIGH</span></div>
+            <div class="console-line"><span class="c-time">08:05:13</span> <span class="c-tool">dns_analyzer</span> <span class="c-type">DMARC</span> <span class="c-val">p=none; rua=mailto:dmarc@...</span> <span class="c-sev-crit">CRITICAL</span></div>
+            <div class="console-line"><span class="c-time">08:05:14</span> <span class="c-tool">dns_analyzer</span> <span class="c-type">DKIM</span> <span class="c-val">google selector, 2048-bit</span> <span class="c-sev-conf">CONFIRMED</span></div>
+            <hr class="console-divider" />
+            <div class="console-line"><span class="c-ai">CLAUDE (Analyst):</span></div>
+            <div class="console-line"><span class="c-val">BLUF: Email infrastructure vulnerable to domain spoofing.</span></div>
+            <div class="console-line"><span class="c-val">DMARC p=none — monitoring mode, no enforcement.</span></div>
+            <div class="console-line"><span class="c-val">SPF soft fail + DMARC none = spoofed emails deliver.</span></div>
+            <div class="console-line"><span class="c-val">Evidence captured → EV-0047-004 (SHA-256: c1a9f7...d2b3)</span></div>
+            <hr class="console-divider" />
+            <div class="console-line"><span class="c-time">08:12:34</span> <span class="c-tool">HIBP</span> <span class="c-type">BREACH</span> <span class="c-val">j.martinez@ — LinkedIn 2021</span> <span class="c-sev-crit">CRITICAL</span></div>
+            <div class="console-line"><span class="c-time">08:12:35</span> <span class="c-tool">HIBP</span> <span class="c-type">BREACH</span> <span class="c-val">j.martinez@ — Adobe 2013</span> <span class="c-sev-crit">CRITICAL</span></div>
+            <div class="console-line"><span class="c-time">08:12:41</span> <span class="c-tool">HIBP</span> <span class="c-type">BREACH</span> <span class="c-val">d.kim@ — Dropbox 2012</span> <span class="c-sev-crit">CRITICAL</span></div>
+            <div class="console-line"><span class="c-time">08:12:47</span> <span class="c-tool">HIBP</span> <span class="c-type">BREACH</span> <span class="c-val">r.torres@ — MyFitnessPal 2018</span> <span class="c-sev-high">HIGH</span></div>
+            <hr class="console-divider" />
+            <div class="console-line"><span class="c-prompt">YOU:</span> <span class="c-val">Deploy SE-001 at 10:15. Set a timer.</span></div>
+            <div class="console-line"><span class="c-ai">CLAUDE:</span> <span class="c-val">SE-001 staged. Deploying at 10:15 EDT.</span></div>
+            <hr class="console-divider" />
+            <div class="console-line"><span class="c-time">10:23:14</span> <span class="c-sev-crit">⚡ SE-001: r.torres@ OPENED email</span></div>
+            <div class="console-line"><span class="c-time">10:23:25</span> <span class="c-sev-crit">⚡ SE-001: r.torres@ CLICKED link</span></div>
+            <div class="console-line"><span class="c-time">10:24:06</span> <span class="c-sev-crit">🔴 SE-001: r.torres@ SUBMITTED CREDENTIALS</span></div>
+            <div class="console-line"><span class="c-val">   Time-to-credential: 52 seconds from open</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="an-stats animate-in">
+        <div class="an-stat">
+          <div class="an-stat-num">12<span class="unit">cmds</span></div>
+          <div class="an-stat-label">Operator keystrokes per session</div>
+        </div>
+        <div class="an-stat">
+          <div class="an-stat-num">~140</div>
+          <div class="an-stat-label">Autonomous tool calls</div>
+        </div>
+        <div class="an-stat">
+          <div class="an-stat-num">4<span class="unit">hrs</span></div>
+          <div class="an-stat-label">Replaces 3-4 days manual work</div>
+        </div>
+        <div class="an-stat">
+          <div class="an-stat-num">72</div>
+          <div class="an-stat-label">Findings per engagement</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT IT DOES ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label animate-in">
+        <span class="section-num">01</span>
+        <h2 class="section-heading">Capabilities</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="cap-grid">
+        <div class="cap-card animate-in stagger-1">
+          <div class="cap-icon">⦿</div>
+          <div class="cap-name">Agentic Claude Integration</div>
+          <div class="cap-desc">
+            Claude operates as your embedded analyst with three adaptive personas — Analyst,
+            Red Team, and Report — switching context based on the task. Tiered autonomy controls
+            let routine recon run hands-free while flagging sensitive actions for operator approval.
+          </div>
+          <div class="cap-stack">
+            <span>Claude Opus</span>
+            <span>Claude Sonnet</span>
+            <span>Persona System</span>
+            <span>Tier 1/2 Autonomy</span>
+          </div>
+        </div>
+
+        <div class="cap-card animate-in stagger-2">
+          <div class="cap-icon">◇</div>
+          <div class="cap-name">Entity Graph & Community Detection</div>
+          <div class="cap-desc">
+            Every person, domain, breach, and infrastructure element is automatically mapped into
+            a Neo4j knowledge graph. Louvain community detection identifies clusters — executive
+            groups, IT infrastructure, vendor chains — and pinpoints bridge nodes for attack path analysis.
+          </div>
+          <div class="cap-stack">
+            <span>Neo4j</span>
+            <span>Cypher</span>
+            <span>GDS Louvain</span>
+            <span>Force-Directed Layout</span>
+          </div>
+        </div>
+
+        <div class="cap-card animate-in stagger-3">
+          <div class="cap-icon">△</div>
+          <div class="cap-name">OSINT Reconnaissance Pipeline</div>
+          <div class="cap-desc">
+            Automated DNS infrastructure analysis, HIBP breach correlation, executive exposure
+            sweeps, vendor chain discovery, and Google dorking — all orchestrated through Celery
+            task queues with real-time SSE streaming to the operator console.
+          </div>
+          <div class="cap-stack">
+            <span>DNS Analysis</span>
+            <span>HIBP</span>
+            <span>Sherlock</span>
+            <span>OSINT Industries</span>
+            <span>Celery</span>
+          </div>
+        </div>
+
+        <div class="cap-card animate-in stagger-4">
+          <div class="cap-icon">□</div>
+          <div class="cap-name">Social Engineering Campaign Management</div>
+          <div class="cap-desc">
+            Design, stage, deploy, and monitor phishing campaigns with per-recipient tracking —
+            open rates, click rates, credential captures, and time-to-click metrics. Live Recharts
+            funnel visualization and automatic evidence capture on every event.
+          </div>
+          <div class="cap-stack">
+            <span>Phishing</span>
+            <span>Pretexting</span>
+            <span>Tracking Pixels</span>
+            <span>Credential Capture</span>
+          </div>
+        </div>
+
+        <div class="cap-card animate-in stagger-5">
+          <div class="cap-icon">◎</div>
+          <div class="cap-name">Evidence Chain of Custody</div>
+          <div class="cap-desc">
+            Every finding is automatically captured with SHA-256 hashing, timestamped custody
+            events, and immutable storage in MinIO. Evidence artifacts are legally defensible
+            and cross-referenced against the entity graph and operation timeline.
+          </div>
+          <div class="cap-stack">
+            <span>SHA-256</span>
+            <span>MinIO</span>
+            <span>PostgreSQL</span>
+            <span>Custody Logging</span>
+          </div>
+        </div>
+
+        <div class="cap-card animate-in stagger-6">
+          <div class="cap-icon">⬡</div>
+          <div class="cap-name">Obsidian Vault Sync</div>
+          <div class="cap-desc">
+            Every entity, finding, and analysis auto-syncs to an Obsidian vault with backlinks.
+            Click on a person node and see their role, breach exposure, graph connections, and
+            every evidence ID — all interlinked in markdown with full graph view support.
+          </div>
+          <div class="cap-stack">
+            <span>Obsidian</span>
+            <span>Markdown</span>
+            <span>Backlinks</span>
+            <span>Graph View</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ARCHITECTURE ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label animate-in">
+        <span class="section-num">02</span>
+        <h2 class="section-heading">Architecture</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="arch-section animate-in">
+        <div class="arch-title">System Architecture</div>
+        <div class="arch-layers">
+          <div class="arch-layer">
+            <div class="arch-node primary">Operator Console (React)</div>
+          </div>
+          <div class="arch-connector">↕</div>
+          <div class="arch-layer">
+            <div class="arch-node ai">Claude Analyst</div>
+            <div class="arch-node ai">Claude Red Team</div>
+            <div class="arch-node ai">Claude Report</div>
+          </div>
+          <div class="arch-connector">↕</div>
+          <div class="arch-layer">
+            <div class="arch-node primary">Orchestration Layer (Celery + SSE)</div>
+          </div>
+          <div class="arch-connector">↕ &nbsp;&nbsp; ↕ &nbsp;&nbsp; ↕ &nbsp;&nbsp; ↕</div>
+          <div class="arch-layer">
+            <div class="arch-node">DNS Tools</div>
+            <div class="arch-node">HIBP API</div>
+            <div class="arch-node">OSINT APIs</div>
+            <div class="arch-node">SE Engine</div>
+          </div>
+          <div class="arch-connector">↕</div>
+          <div class="arch-layer">
+            <div class="arch-node data">Neo4j Graph</div>
+            <div class="arch-node data">PostgreSQL</div>
+            <div class="arch-node data">MinIO Evidence</div>
+            <div class="arch-node data">Obsidian Vault</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AI PERSONAS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label animate-in">
+        <span class="section-num">03</span>
+        <h2 class="section-heading">Adaptive AI Personas</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="persona-grid animate-in">
+        <div class="persona-cell">
+          <div class="persona-indicator">
+            <span class="dot blue"></span>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--node-blue);">⦿ Analyst</span>
+          </div>
+          <div class="persona-name">Analyst</div>
+          <div class="persona-desc">
+            Structured intelligence analysis. BLUF-first reporting.
+            Confidence-scored findings with source reliability ratings (A-1 through F-6).
+            Executes Tier 1 autonomous tasks — DNS, HIBP, entity graph construction.
+          </div>
+        </div>
+        <div class="persona-cell">
+          <div class="persona-indicator">
+            <span class="dot red"></span>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--node-red);">⦿ Red Team</span>
+          </div>
+          <div class="persona-name">Red Team</div>
+          <div class="persona-desc">
+            Adversarial thinking. Attack path analysis ranked by feasibility,
+            impact, and detection risk. Kill chain mapping. SE campaign design.
+            Escalates to Claude Opus for complex multi-step reasoning.
+          </div>
+        </div>
+        <div class="persona-cell">
+          <div class="persona-indicator">
+            <span class="dot gold"></span>
+            <span style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--accent);">⦿ Report</span>
+          </div>
+          <div class="persona-name">Report</div>
+          <div class="persona-desc">
+            Client-facing prose. Formal, objective, legally precise.
+            Executive summaries for CEOs, technical detail for CISOs.
+            Every claim traced to an evidence ID. Tier 2 approval required.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ A REAL SESSION ============ -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section-label animate-in">
+        <span class="section-num">04</span>
+        <h2 class="section-heading">A Real Work Session</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <p class="animate-in" style="font-size: 16px; color: var(--text-secondary); line-height: 1.8; margin-bottom: var(--space-xl);">
+        Four hours. Twelve natural language commands. Here's what Annabeth produces
+        in a single morning session on a $12,000 red team engagement.
+      </p>
+
+      <div class="session-block animate-in stagger-1">
+        <div class="session-time">08:00 – 08:12</div>
+        <div class="session-title">DNS Infrastructure Analysis</div>
+        <div class="session-desc">
+          Two words typed: "Go." Claude autonomously analyzes SPF, DMARC, and DKIM
+          records. Discovers DMARC policy set to monitoring mode with no enforcement —
+          the entire domain is spoofable. Finding captured, hashed, and stored in 7 minutes.
+        </div>
+        <div class="session-result">→ 1 CRITICAL finding · Evidence auto-captured</div>
+      </div>
+
+      <div class="session-block animate-in stagger-2">
+        <div class="session-time">08:12 – 08:22</div>
+        <div class="session-title">Batch Breach Correlation</div>
+        <div class="session-desc">
+          23 harvested emails checked against HIBP. Seven hits. The CFO has a plaintext
+          password exposure from 2013 that reveals a predictable credential pattern.
+          Cross-referenced against the org chart to identify financial authority.
+        </div>
+        <div class="session-result">→ 3 CRITICAL personnel findings · Entity graph auto-populated</div>
+      </div>
+
+      <div class="session-block animate-in stagger-3">
+        <div class="session-time">08:22 – 08:55</div>
+        <div class="session-title">Entity Graph + Attack Path Analysis</div>
+        <div class="session-desc">
+          Full knowledge graph built: 68 nodes, 89 edges, 4 communities detected via
+          Louvain algorithm. Claude escalates to Opus, switches to Red Team persona, and
+          delivers 3 ranked attack paths with kill chains, feasibility scores, and detection risk.
+        </div>
+        <div class="session-result">→ CFO identified as highest betweenness centrality node</div>
+      </div>
+
+      <div class="session-block animate-in stagger-4">
+        <div class="session-time">08:55 – 10:15</div>
+        <div class="session-title">SE Campaign Design & Staging</div>
+        <div class="session-desc">
+          Phishing campaign designed from entity graph intelligence: spoofed CFO email
+          to AP team exploiting DMARC vulnerability. Per-recipient tracking, credential
+          capture landing page, automated redirect to reduce suspicion. Tier 2 approval
+          gate enforced before deployment.
+        </div>
+        <div class="session-result">→ SE-001 staged and deployed at 10:15 EDT</div>
+      </div>
+
+      <div class="session-block animate-in stagger-5">
+        <div class="session-time">10:24</div>
+        <div class="session-title">Credential Captured</div>
+        <div class="session-desc">
+          52 seconds. From email open to credential submission. An AP specialist entered
+          corporate credentials on the simulated attacker portal. Zero employees reported
+          the phishing email to IT security — the most important finding in the engagement.
+        </div>
+        <div class="session-result">→ Attack Path 1 validated · 0% report rate</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BUILT FOR SKPI ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label animate-in">
+        <span class="section-num">05</span>
+        <h2 class="section-heading">Built for SKPI</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="skpi-banner animate-in">
+        <div class="skpi-text">
+          <h3>South Knox Private Investigators</h3>
+          <p>
+            Annabeth is the operating system for SKPI — a Knoxville-based private
+            investigation practice specializing in blue hat OSINT, corporate red team
+            engagements, executive exposure assessments, and vendor chain analysis.
+            The platform is built to make a solo operator as effective as a five-person team.
+          </p>
+        </div>
+        <div class="skpi-details">
+          <div class="skpi-row">
+            <span class="skpi-key">Entity</span>
+            <span class="skpi-val">South Knox Private Investigators</span>
+          </div>
+          <div class="skpi-row">
+            <span class="skpi-key">Location</span>
+            <span class="skpi-val">Knoxville, TN</span>
+          </div>
+          <div class="skpi-row">
+            <span class="skpi-key">Services</span>
+            <span class="skpi-val">OSINT · Red Team · Executive Exposure</span>
+          </div>
+          <div class="skpi-row">
+            <span class="skpi-key">Platform</span>
+            <span class="skpi-val">Annabeth (proprietary)</span>
+          </div>
+          <div class="skpi-row">
+            <span class="skpi-key">Methodology</span>
+            <span class="skpi-val">Blue hat · Ethical · Authorized only</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-block animate-in">
+        <h2 class="contact-heading">
+          Interested in <span class="italic-accent">Annabeth</span>?
+        </h2>
+        <p class="contact-sub">
+          Whether you're in the investigation space, interested in agentic AI architecture,
+          or want to talk about building operator-grade tooling — let's connect.
+        </p>
+        <div class="contact-channels">
+          <a href="https://github.com/WhiplashRetro02/annabeth" class="contact-channel" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:nate@natewhiteman.com" class="contact-channel">Email</a>
+          <a href="https://linkedin.com/in/nathaniel-whiteman" class="contact-channel" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Base>

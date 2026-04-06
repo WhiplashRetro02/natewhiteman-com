@@ -1,0 +1,156 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Nate Whiteman — Data & AI Leadership',
+  description = 'Data Scientist & AI Engineer specializing in agentic systems, knowledge graphs, and the infrastructure that makes AI operationally useful.',
+  ogImage = '/og-image.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Social / OG -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+  <!-- GEO: Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nathaniel Whiteman",
+    "alternateName": "Nate Whiteman",
+    "jobTitle": "Data Scientist & AI Engineer",
+    "description": "Data & AI Leader specializing in agentic systems, knowledge graphs, and AI enablement strategy.",
+    "url": "https://natewhiteman.com",
+    "sameAs": [
+      "https://linkedin.com/in/nathaniel-whiteman",
+      "https://github.com/YOUR_GITHUB_HANDLE"
+    ],
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "University of California, Los Angeles"
+    },
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "Knowledge Graphs",
+      "Retrieval-Augmented Generation",
+      "Neo4j",
+      "Agentic AI Systems",
+      "Model Context Protocol",
+      "Data Architecture",
+      "Cognitive Science"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "CGI"
+    }
+  })} />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/styles/global.css" />
+</head>
+<body>
+  <!-- Ambient background layers -->
+  <div class="ambient-layer"></div>
+  <div class="noise-overlay"></div>
+  <div class="graph-net" aria-hidden="true">
+    <div class="graph-node"></div>
+    <div class="graph-node"></div>
+    <div class="graph-node"></div>
+    <div class="graph-node"></div>
+    <div class="graph-node"></div>
+    <div class="graph-node"></div>
+    <div class="graph-node"></div>
+    <div class="graph-node"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="site-nav" id="site-nav">
+    <a href="/" class="nav-wordmark">nate<span class="wm-accent">whiteman</span>.com</a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#systems">Systems</a></li>
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#writing">Thinking Out Loud</a></li>
+      <li><a href="/services">Services</a></li>
+      <li><a href="/annabeth" class="nav-current-project">Current Project</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Content -->
+  <main class="page-content">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer container">
+    <span class="footer-text">&copy; {new Date().getFullYear()} Nathaniel Whiteman</span>
+    <span class="footer-trail">
+      Cognitive Science &rarr; Data &rarr; AI &rarr; <span class="accent">Leadership</span>
+    </span>
+  </footer>
+
+  <!-- Scripts -->
+  <script is:inline>
+    // Nav scroll behavior
+    const nav = document.getElementById('site-nav');
+    const onScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href') || '';
+        const hash = href.includes('#') ? '#' + href.split('#')[1] : null;
+        if (!hash) return;
+        const target = document.querySelector(hash);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

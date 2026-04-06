@@ -1,0 +1,768 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Services — Nate Whiteman"
+  description="Contract data analytics, custom dashboarding, AI enablement, and technology consulting for small and medium-sized businesses."
+>
+
+  <!-- ============ PAGE HERO ============ -->
+  <section class="svc-hero">
+    <div class="container">
+      <div class="svc-hero-inner">
+        <div class="svc-eyebrow">Contract Work &amp; Consulting</div>
+        <h1 class="svc-title">
+          What I can<br>do for <span class="italic-accent">you</span>
+        </h1>
+        <p class="svc-lead">
+          I work directly with small and medium-sized businesses that need serious
+          data and AI capability — without the overhead of a full-time hire.
+          Engagements are focused, scoped, and built to leave you with something
+          that actually runs.
+        </p>
+        <a href="#inquiry" class="btn btn--primary">Start a conversation &rarr;</a>
+      </div>
+    </div>
+    <div class="svc-hero-rule" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ SERVICES GRID ============ -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-label animate-in">
+        <span class="section-num">01</span>
+        <h2 class="section-heading">What I Offer</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="svc-grid animate-in stagger-1">
+
+        <!-- Dashboarding -->
+        <div class="svc-card svc-card--featured">
+          <div class="svc-card-glyph">◈</div>
+          <div class="svc-card-body">
+            <div class="svc-tag">Most requested</div>
+            <h3 class="svc-card-title">Custom Dashboarding</h3>
+            <p class="svc-card-desc">
+              Decision-ready dashboards tailored to your business — not generic
+              templates. Built around the metrics your team actually acts on, with
+              real-time or scheduled data refresh, role-based views, and the visual
+              clarity that makes patterns obvious at a glance.
+            </p>
+            <ul class="svc-deliverables">
+              <li>Interactive charts, KPI panels, drill-downs</li>
+              <li>Connected to your existing data sources</li>
+              <li>Hosted, documented, and handed off with training</li>
+              <li>Built for non-technical stakeholders</li>
+            </ul>
+            <div class="svc-tools">
+              <span>Recharts</span>
+              <span>D3</span>
+              <span>PowerBI</span>
+              <span>Cloudflare</span>
+              <span>Python</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Analytics -->
+        <div class="svc-card">
+          <div class="svc-card-glyph">◇</div>
+          <div class="svc-card-body">
+            <h3 class="svc-card-title">Contract Data Analytics</h3>
+            <p class="svc-card-desc">
+              You have data. You're not sure what it's telling you. I dig into
+              your operational, sales, or customer data and surface the findings
+              that drive real decisions — delivered as reports, notebooks, or
+              interactive summaries your team can own.
+            </p>
+            <ul class="svc-deliverables">
+              <li>Cohort analysis, funnel analytics, retention curves</li>
+              <li>Ad-hoc analysis with documented methodology</li>
+              <li>SQL, Python, or whatever your stack uses</li>
+              <li>Findings presented in plain language</li>
+            </ul>
+            <div class="svc-tools">
+              <span>Python</span>
+              <span>SQL</span>
+              <span>Pandas</span>
+              <span>Jupyter</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Science -->
+        <div class="svc-card">
+          <div class="svc-card-glyph">△</div>
+          <div class="svc-card-body">
+            <h3 class="svc-card-title">Data Science</h3>
+            <p class="svc-card-desc">
+              Predictive modeling, forecasting, clustering, and anomaly detection
+              grounded in what your business actually needs to know. I build models
+              that are explainable, accurate enough to be useful, and practical
+              enough to be maintained after I hand them off.
+            </p>
+            <ul class="svc-deliverables">
+              <li>Demand forecasting, churn prediction, segmentation</li>
+              <li>Model selection, training, evaluation, and documentation</li>
+              <li>Explainability-first — your team understands the output</li>
+              <li>Productionization guidance included</li>
+            </ul>
+            <div class="svc-tools">
+              <span>scikit-learn</span>
+              <span>XGBoost</span>
+              <span>statsmodels</span>
+              <span>Python</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Enablement -->
+        <div class="svc-card">
+          <div class="svc-card-glyph">⬡</div>
+          <div class="svc-card-body">
+            <h3 class="svc-card-title">AI Enablement</h3>
+            <p class="svc-card-desc">
+              Most AI initiatives fail at the data layer — not the model layer.
+              I help SMBs build the foundational infrastructure that makes AI
+              adoption real: clean data pipelines, retrieval systems that actually
+              retrieve the right thing, and agentic tooling that automates the work
+              your team hates doing manually.
+            </p>
+            <ul class="svc-deliverables">
+              <li>RAG pipelines, semantic search, document Q&A</li>
+              <li>Claude / GPT-4 integrations tailored to your workflows</li>
+              <li>Internal AI tools — not consumer wrappers</li>
+              <li>Data readiness assessments before you spend on models</li>
+            </ul>
+            <div class="svc-tools">
+              <span>Claude API</span>
+              <span>RAG</span>
+              <span>Neo4j</span>
+              <span>Embeddings</span>
+              <span>MCP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technology Consulting -->
+        <div class="svc-card">
+          <div class="svc-card-glyph">○</div>
+          <div class="svc-card-body">
+            <h3 class="svc-card-title">Technology Consulting</h3>
+            <p class="svc-card-desc">
+              Strategic and technical guidance for leaders who need to make
+              smart technology decisions without getting sold to. I help you
+              evaluate vendors, build roadmaps, hire the right people, and
+              understand what "AI-ready" actually means for a business your size.
+            </p>
+            <ul class="svc-deliverables">
+              <li>Data architecture assessments and recommendations</li>
+              <li>Tool / vendor evaluation and selection</li>
+              <li>Technical roadmapping aligned to business goals</li>
+              <li>Staff augmentation and team capability building</li>
+            </ul>
+            <div class="svc-tools">
+              <span>Strategy</span>
+              <span>Roadmapping</span>
+              <span>Architecture</span>
+              <span>Hiring</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW I WORK ============ -->
+  <section class="section" id="process">
+    <div class="container">
+      <div class="section-label animate-in">
+        <span class="section-num">02</span>
+        <h2 class="section-heading">How I Work</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="process-track animate-in stagger-1">
+        <div class="process-step">
+          <div class="process-step-num">01</div>
+          <div class="process-step-content">
+            <h4 class="process-step-title">Discovery call</h4>
+            <p class="process-step-desc">
+              We talk through what you're trying to solve, what data you have,
+              and what success looks like. No pitch. I tell you plainly if
+              I'm the right fit.
+            </p>
+          </div>
+        </div>
+        <div class="process-connector" aria-hidden="true"></div>
+
+        <div class="process-step">
+          <div class="process-step-num">02</div>
+          <div class="process-step-content">
+            <h4 class="process-step-title">Scoped proposal</h4>
+            <p class="process-step-desc">
+              I send a written proposal with a defined scope, timeline,
+              deliverables, and fixed price. No hourly billing surprises.
+            </p>
+          </div>
+        </div>
+        <div class="process-connector" aria-hidden="true"></div>
+
+        <div class="process-step">
+          <div class="process-step-num">03</div>
+          <div class="process-step-content">
+            <h4 class="process-step-title">Execution</h4>
+            <p class="process-step-desc">
+              I work asynchronously with regular check-ins. You see the work
+              as it progresses — not just the final output.
+            </p>
+          </div>
+        </div>
+        <div class="process-connector" aria-hidden="true"></div>
+
+        <div class="process-step">
+          <div class="process-step-num">04</div>
+          <div class="process-step-content">
+            <h4 class="process-step-title">Handoff</h4>
+            <p class="process-step-desc">
+              Documented deliverables, walkthrough sessions, and support
+              during the transition period so your team can own what I built.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INQUIRY FORM ============ -->
+  <section class="section" id="inquiry">
+    <div class="container container--narrow">
+      <div class="section-label animate-in">
+        <span class="section-num">03</span>
+        <h2 class="section-heading">Get in Touch</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="inquiry-layout animate-in stagger-1">
+        <div class="inquiry-meta">
+          <p class="inquiry-intro">
+            Tell me a bit about what you're working on. I read every message
+            and respond within a couple of business days.
+          </p>
+          <div class="inquiry-notes">
+            <div class="inquiry-note">
+              <span class="inquiry-note-label">Typical project size</span>
+              <span class="inquiry-note-val">$2,500 – $25,000</span>
+            </div>
+            <div class="inquiry-note">
+              <span class="inquiry-note-label">Timeline</span>
+              <span class="inquiry-note-val">2 – 12 weeks</span>
+            </div>
+            <div class="inquiry-note">
+              <span class="inquiry-note-label">Availability</span>
+              <span class="inquiry-note-val"><span class="status-dot"></span>Currently taking new clients</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="inquiry-form" id="inquiry-form" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="name">Name</label>
+              <input
+                class="form-input"
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your name"
+                autocomplete="name"
+                required
+              />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="email">Email</label>
+              <input
+                class="form-input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@company.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="message">What are you working on?</label>
+            <textarea
+              class="form-input form-textarea"
+              id="message"
+              name="message"
+              placeholder="Describe the problem or project — the messier the better. I can help you shape it."
+              rows="6"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn--primary" type="submit" id="submit-btn">
+              Send inquiry &rarr;
+            </button>
+            <span class="form-privacy">No spam. No mailing lists. Just a real reply.</span>
+          </div>
+
+          <div class="form-feedback" id="form-feedback" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* ---- HERO ---- */
+  .svc-hero {
+    padding: calc(var(--space-4xl) + 60px) 0 var(--space-3xl);
+    position: relative;
+  }
+
+  .svc-hero-inner {
+    max-width: 720px;
+  }
+
+  .svc-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-muted);
+    margin-bottom: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .svc-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+
+  .svc-title {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 7vw, 84px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    margin-bottom: var(--space-xl);
+  }
+
+  .svc-lead {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin-bottom: var(--space-xl);
+  }
+
+  .svc-hero-rule {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-default) 30%, var(--border-default) 70%, transparent);
+  }
+
+  /* ---- SERVICES GRID ---- */
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border-subtle);
+    border: 1px solid var(--border-default);
+  }
+
+  .svc-card {
+    background: var(--bg-primary);
+    padding: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+    transition: background var(--duration-base);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .svc-card:hover {
+    background: var(--bg-elevated);
+  }
+
+  .svc-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .svc-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .svc-card--featured {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-xl);
+  }
+
+  .svc-card--featured::before {
+    background: linear-gradient(90deg, var(--accent), var(--node-blue));
+    transform: scaleX(1);
+  }
+
+  .svc-card-glyph {
+    font-size: 36px;
+    line-height: 1;
+    opacity: 0.35;
+    flex-shrink: 0;
+    transition: opacity var(--duration-base);
+    margin-top: 4px;
+  }
+
+  .svc-card:hover .svc-card-glyph {
+    opacity: 0.7;
+  }
+
+  .svc-card--featured .svc-card-glyph {
+    font-size: 48px;
+    opacity: 0.5;
+  }
+
+  .svc-card-body {
+    flex: 1;
+  }
+
+  .svc-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid var(--border-accent);
+    padding: 3px 10px;
+    display: inline-block;
+    margin-bottom: var(--space-md);
+  }
+
+  .svc-card-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: var(--space-sm);
+  }
+
+  .svc-card--featured .svc-card-title {
+    font-size: 28px;
+  }
+
+  .svc-card-desc {
+    font-size: 14px;
+    color: var(--text-tertiary);
+    line-height: 1.75;
+    margin-bottom: var(--space-md);
+  }
+
+  .svc-deliverables {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: var(--space-md);
+  }
+
+  .svc-deliverables li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .svc-deliverables li::before {
+    content: '→';
+    color: var(--accent-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .svc-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .svc-tools span {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    background: var(--accent-glow);
+    color: var(--accent-muted);
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* ---- PROCESS ---- */
+  .process-track {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+  }
+
+  .process-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-xl) var(--space-lg);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    position: relative;
+    transition: background var(--duration-base);
+    min-height: 200px;
+  }
+
+  .process-step:hover {
+    background: var(--bg-surface);
+  }
+
+  .process-connector {
+    width: 1px;
+    flex-shrink: 0;
+  }
+
+  .process-step-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent-muted);
+  }
+
+  .process-step-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    color: var(--text-primary);
+  }
+
+  .process-step-desc {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    line-height: 1.7;
+  }
+
+  /* ---- INQUIRY FORM ---- */
+  .inquiry-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-3xl);
+    align-items: flex-start;
+  }
+
+  .inquiry-intro {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: var(--space-xl);
+  }
+
+  .inquiry-notes {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .inquiry-note {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px var(--space-md);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .inquiry-note-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .inquiry-note-val {
+    font-size: 14px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .status-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--node-green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Form */
+  .inquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .form-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .form-input {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 300;
+    padding: 14px 16px;
+    outline: none;
+    width: 100%;
+    transition: border-color var(--duration-fast);
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .form-input::placeholder {
+    color: var(--text-ghost);
+  }
+
+  .form-input:focus {
+    border-color: var(--accent-muted);
+    background: var(--bg-surface);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 140px;
+    line-height: 1.65;
+  }
+
+  .form-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .form-privacy {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-ghost);
+    letter-spacing: 0.5px;
+  }
+
+  .form-feedback {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    min-height: 20px;
+  }
+
+  .form-feedback.success { color: var(--node-green); }
+  .form-feedback.error   { color: var(--node-red); }
+</style>
+
+<script>
+  const form = document.getElementById('inquiry-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+  const feedback = document.getElementById('form-feedback') as HTMLElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submitBtn || !feedback) return;
+
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value.trim();
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim();
+
+    if (!name || !email || !message) {
+      feedback.className = 'form-feedback error';
+      feedback.textContent = 'Please fill out all fields.';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    feedback.className = 'form-feedback';
+    feedback.textContent = '';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await res.json() as { success: boolean; error?: string };
+
+      if (data.success) {
+        feedback.className = 'form-feedback success';
+        feedback.textContent = "Got it — I'll be in touch within a couple of business days.";
+        form.reset();
+      } else {
+        feedback.className = 'form-feedback error';
+        feedback.textContent = data.error ?? 'Something went wrong. Try emailing me directly.';
+      }
+    } catch {
+      feedback.className = 'form-feedback error';
+      feedback.textContent = 'Network error. Please try again or email me directly.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send inquiry →';
+    }
+  });
+</script>
