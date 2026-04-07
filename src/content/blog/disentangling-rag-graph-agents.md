@@ -1,7 +1,7 @@
 ---
 title: "Disentangling RAG, Graph, and Agents"
 description: "Before you spend a dollar on AI, you need to understand what structure your data needs to be in. A plain-language framework for business owners who want to get there — using a school system as the through line."
-date: 2026-04-06
+date: 2026-05-10
 tags: ["AI Enablement", "Data Architecture", "SMB"]
 featured: true
 ---
