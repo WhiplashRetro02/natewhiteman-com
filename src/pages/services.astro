@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 
 <Base
   title="Services — Nate Whiteman"
-  description="Contract data analytics, custom dashboarding, AI enablement, and technology consulting for small and medium-sized businesses."
+  description="Contract data analytics, custom dashboarding, AI enablement, and technology consulting for small and medium-sized businesses. Fixed-scope engagements under $5K."
 >
 
   <!-- ============ PAGE HERO ============ -->
@@ -18,16 +18,19 @@ import Base from '../layouts/Base.astro';
         <p class="svc-lead">
           I work directly with small and medium-sized businesses that need serious
           data and AI capability — without the overhead of a full-time hire.
-          Engagements are focused, scoped, and built to leave you with something
-          that actually runs.
+          Engagements are fixed-scope, fixed-price, and built to leave you with
+          something that actually runs.
         </p>
-        <a href="#inquiry" class="btn btn--primary">Start a conversation &rarr;</a>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="#inquiry" class="btn btn--primary">Start a conversation &rarr;</a>
+          <a href="#services" class="btn btn--ghost">See what's included &darr;</a>
+        </div>
       </div>
     </div>
     <div class="svc-hero-rule" aria-hidden="true"></div>
   </section>
 
-  <!-- ============ SERVICES GRID ============ -->
+  <!-- ============ SERVICES ============ -->
   <section class="section" id="services">
     <div class="container">
       <div class="section-label animate-in">
@@ -35,139 +38,203 @@ import Base from '../layouts/Base.astro';
         <h2 class="section-heading">What I Offer</h2>
         <div class="section-rule"></div>
       </div>
+      <p class="svc-intro animate-in">Click any service to see a real example engagement and pricing.</p>
 
-      <div class="svc-grid animate-in stagger-1">
+      <div class="svc-list animate-in stagger-1">
 
-        <!-- Dashboarding -->
-        <div class="svc-card svc-card--featured">
-          <div class="svc-card-glyph">◈</div>
-          <div class="svc-card-body">
-            <div class="svc-tag">Most requested</div>
-            <h3 class="svc-card-title">Custom Dashboarding</h3>
-            <p class="svc-card-desc">
-              Decision-ready dashboards tailored to your business — not generic
-              templates. Built around the metrics your team actually acts on, with
-              real-time or scheduled data refresh, role-based views, and the visual
-              clarity that makes patterns obvious at a glance.
-            </p>
-            <ul class="svc-deliverables">
-              <li>Interactive charts, KPI panels, drill-downs</li>
-              <li>Connected to your existing data sources</li>
-              <li>Hosted, documented, and handed off with training</li>
-              <li>Built for non-technical stakeholders</li>
-            </ul>
-            <div class="svc-tools">
-              <span>Recharts</span>
-              <span>D3</span>
-              <span>PowerBI</span>
-              <span>Cloudflare</span>
-              <span>Python</span>
+        <!-- ── Dashboarding ── -->
+        <div class="svc-item" data-svc="dash">
+          <button class="svc-header" aria-expanded="false" aria-controls="detail-dash">
+            <div class="svc-header-left">
+              <span class="svc-glyph">◈</span>
+              <div>
+                <div class="svc-item-tag">Most requested</div>
+                <h3 class="svc-item-title">Custom Dashboarding</h3>
+                <p class="svc-item-summary">Decision-ready dashboards built around the metrics your team actually acts on — connected to your real data, not template placeholders.</p>
+              </div>
+            </div>
+            <div class="svc-header-right">
+              <span class="svc-price-preview">from $2,500</span>
+              <span class="svc-toggle" aria-hidden="true">+</span>
+            </div>
+          </button>
+          <div class="svc-detail" id="detail-dash" hidden>
+            <div class="svc-detail-inner">
+              <div class="svc-example">
+                <div class="svc-example-label">Example Engagement</div>
+                <p>A 12-person regional HVAC company has revenue, job completion, and technician performance data living in three separate spreadsheets. No one can see the full picture at a glance. We build a unified operations dashboard — job pipeline, revenue by technician, customer satisfaction trend — connected directly to their existing data and refreshed automatically. Deployed, documented, and handed off with a training session.</p>
+              </div>
+              <div class="svc-deliverables-detail">
+                <div class="svc-deliverables-label">What you receive</div>
+                <ul>
+                  <li>Interactive dashboard connected to your data sources</li>
+                  <li>Role-based views (owner, manager, field team)</li>
+                  <li>Automated or scheduled refresh</li>
+                  <li>Full documentation and 1 training session</li>
+                  <li>30 days of support post-delivery</li>
+                </ul>
+              </div>
+              <div class="svc-pricing">
+                <div class="svc-pricing-range">$2,500 – $4,500</div>
+                <div class="svc-pricing-note">Fixed scope · Fixed price · Delivered in 2–4 weeks</div>
+              </div>
+              <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
             </div>
           </div>
         </div>
 
-        <!-- Data Analytics -->
-        <div class="svc-card">
-          <div class="svc-card-glyph">◇</div>
-          <div class="svc-card-body">
-            <h3 class="svc-card-title">Contract Data Analytics</h3>
-            <p class="svc-card-desc">
-              You have data. You're not sure what it's telling you. I dig into
-              your operational, sales, or customer data and surface the findings
-              that drive real decisions — delivered as reports, notebooks, or
-              interactive summaries your team can own.
-            </p>
-            <ul class="svc-deliverables">
-              <li>Cohort analysis, funnel analytics, retention curves</li>
-              <li>Ad-hoc analysis with documented methodology</li>
-              <li>SQL, Python, or whatever your stack uses</li>
-              <li>Findings presented in plain language</li>
-            </ul>
-            <div class="svc-tools">
-              <span>Python</span>
-              <span>SQL</span>
-              <span>Pandas</span>
-              <span>Jupyter</span>
+        <!-- ── Data Analytics ── -->
+        <div class="svc-item" data-svc="analytics">
+          <button class="svc-header" aria-expanded="false" aria-controls="detail-analytics">
+            <div class="svc-header-left">
+              <span class="svc-glyph">◇</span>
+              <div>
+                <h3 class="svc-item-title">Contract Data Analytics</h3>
+                <p class="svc-item-summary">You have data. You're not sure what it's telling you. I dig in and surface the findings that actually drive decisions.</p>
+              </div>
+            </div>
+            <div class="svc-header-right">
+              <span class="svc-price-preview">from $1,500</span>
+              <span class="svc-toggle" aria-hidden="true">+</span>
+            </div>
+          </button>
+          <div class="svc-detail" id="detail-analytics" hidden>
+            <div class="svc-detail-inner">
+              <div class="svc-example">
+                <div class="svc-example-label">Example Engagement</div>
+                <p>An e-commerce retailer notices their repeat purchase rate dropped but can't figure out why. We dig into their order history, analyze cohorts by acquisition channel, and identify that customers from one specific paid campaign have 40% lower lifetime value than all others. One clear finding — one clear action. Delivered as an interactive report your team can own.</p>
+              </div>
+              <div class="svc-deliverables-detail">
+                <div class="svc-deliverables-label">What you receive</div>
+                <ul>
+                  <li>Documented analysis with clear findings and recommendations</li>
+                  <li>Executive summary written for non-technical stakeholders</li>
+                  <li>Underlying analysis notebook (yours to keep and re-run)</li>
+                  <li>One follow-up call to walk through findings</li>
+                </ul>
+              </div>
+              <div class="svc-pricing">
+                <div class="svc-pricing-range">$1,500 – $3,500</div>
+                <div class="svc-pricing-note">Fixed scope · Fixed price · Delivered in 1–3 weeks</div>
+              </div>
+              <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
             </div>
           </div>
         </div>
 
-        <!-- Data Science -->
-        <div class="svc-card">
-          <div class="svc-card-glyph">△</div>
-          <div class="svc-card-body">
-            <h3 class="svc-card-title">Data Science</h3>
-            <p class="svc-card-desc">
-              Predictive modeling, forecasting, clustering, and anomaly detection
-              grounded in what your business actually needs to know. I build models
-              that are explainable, accurate enough to be useful, and practical
-              enough to be maintained after I hand them off.
-            </p>
-            <ul class="svc-deliverables">
-              <li>Demand forecasting, churn prediction, segmentation</li>
-              <li>Model selection, training, evaluation, and documentation</li>
-              <li>Explainability-first — your team understands the output</li>
-              <li>Productionization guidance included</li>
-            </ul>
-            <div class="svc-tools">
-              <span>scikit-learn</span>
-              <span>XGBoost</span>
-              <span>statsmodels</span>
-              <span>Python</span>
+        <!-- ── Data Science ── -->
+        <div class="svc-item" data-svc="ds">
+          <button class="svc-header" aria-expanded="false" aria-controls="detail-ds">
+            <div class="svc-header-left">
+              <span class="svc-glyph">△</span>
+              <div>
+                <h3 class="svc-item-title">Data Science</h3>
+                <p class="svc-item-summary">Predictive models, forecasting, and segmentation grounded in what your business actually needs to know — explainable and practical enough to be maintained.</p>
+              </div>
+            </div>
+            <div class="svc-header-right">
+              <span class="svc-price-preview">from $2,000</span>
+              <span class="svc-toggle" aria-hidden="true">+</span>
+            </div>
+          </button>
+          <div class="svc-detail" id="detail-ds" hidden>
+            <div class="svc-detail-inner">
+              <div class="svc-example">
+                <div class="svc-example-label">Example Engagement</div>
+                <p>A property management firm wants to predict which units are likely to go vacant in the next 60 days so they can get ahead of the leasing cycle. We build a churn prediction model on their lease history, tenant behavior patterns, and maintenance records — producing a ranked watchlist that refreshes every Monday morning. Documented, deployed, and explained in plain English.</p>
+              </div>
+              <div class="svc-deliverables-detail">
+                <div class="svc-deliverables-label">What you receive</div>
+                <ul>
+                  <li>Trained model with documented methodology</li>
+                  <li>Prediction pipeline connected to your data</li>
+                  <li>Plain-language explanation of how it works and when to trust it</li>
+                  <li>Deployment guide so your team can maintain it</li>
+                </ul>
+              </div>
+              <div class="svc-pricing">
+                <div class="svc-pricing-range">$2,000 – $4,500</div>
+                <div class="svc-pricing-note">Fixed scope · Fixed price · Delivered in 3–6 weeks</div>
+              </div>
+              <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
             </div>
           </div>
         </div>
 
-        <!-- AI Enablement -->
-        <div class="svc-card">
-          <div class="svc-card-glyph">⬡</div>
-          <div class="svc-card-body">
-            <h3 class="svc-card-title">AI Enablement</h3>
-            <p class="svc-card-desc">
-              Most AI initiatives fail at the data layer — not the model layer.
-              I help SMBs build the foundational infrastructure that makes AI
-              adoption real: clean data pipelines, retrieval systems that actually
-              retrieve the right thing, and agentic tooling that automates the work
-              your team hates doing manually.
-            </p>
-            <ul class="svc-deliverables">
-              <li>RAG pipelines, semantic search, document Q&A</li>
-              <li>Claude / GPT-4 integrations tailored to your workflows</li>
-              <li>Internal AI tools — not consumer wrappers</li>
-              <li>Data readiness assessments before you spend on models</li>
-            </ul>
-            <div class="svc-tools">
-              <span>Claude API</span>
-              <span>RAG</span>
-              <span>Neo4j</span>
-              <span>Embeddings</span>
-              <span>MCP</span>
+        <!-- ── AI Enablement ── -->
+        <div class="svc-item" data-svc="ai">
+          <button class="svc-header" aria-expanded="false" aria-controls="detail-ai">
+            <div class="svc-header-left">
+              <span class="svc-glyph">⬡</span>
+              <div>
+                <h3 class="svc-item-title">AI Enablement</h3>
+                <p class="svc-item-summary">Most AI initiatives fail at the data layer. I build the foundational infrastructure that makes AI adoption real — not a demo, not a wrapper, something your team actually uses.</p>
+              </div>
+            </div>
+            <div class="svc-header-right">
+              <span class="svc-price-preview">from $2,500</span>
+              <span class="svc-toggle" aria-hidden="true">+</span>
+            </div>
+          </button>
+          <div class="svc-detail" id="detail-ai" hidden>
+            <div class="svc-detail-inner">
+              <div class="svc-example">
+                <div class="svc-example-label">Example Engagement</div>
+                <p>A 20-person law firm has 8 years of case documents sitting in Google Drive. No one can find anything quickly, and clients pay for time while staff digs through folders. We build a retrieval system that lets staff ask plain-language questions — "what's our precedent on non-compete clauses in Tennessee?" — and get back the right documents, clauses, and precedents in seconds. Deployed internally, documented, and staff-trained.</p>
+              </div>
+              <div class="svc-deliverables-detail">
+                <div class="svc-deliverables-label">What you receive</div>
+                <ul>
+                  <li>Deployed AI system connected to your existing documents or data</li>
+                  <li>Internal tool your team owns — not a SaaS subscription</li>
+                  <li>Admin guide for adding new documents and maintaining accuracy</li>
+                  <li>Staff training session and 30-day support period</li>
+                </ul>
+              </div>
+              <div class="svc-pricing">
+                <div class="svc-pricing-range">$2,500 – $5,000</div>
+                <div class="svc-pricing-note">Fixed scope · Fixed price · Delivered in 3–6 weeks</div>
+              </div>
+              <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
             </div>
           </div>
         </div>
 
-        <!-- Technology Consulting -->
-        <div class="svc-card">
-          <div class="svc-card-glyph">○</div>
-          <div class="svc-card-body">
-            <h3 class="svc-card-title">Technology Consulting</h3>
-            <p class="svc-card-desc">
-              Strategic and technical guidance for leaders who need to make
-              smart technology decisions without getting sold to. I help you
-              evaluate vendors, build roadmaps, hire the right people, and
-              understand what "AI-ready" actually means for a business your size.
-            </p>
-            <ul class="svc-deliverables">
-              <li>Data architecture assessments and recommendations</li>
-              <li>Tool / vendor evaluation and selection</li>
-              <li>Technical roadmapping aligned to business goals</li>
-              <li>Staff augmentation and team capability building</li>
-            </ul>
-            <div class="svc-tools">
-              <span>Strategy</span>
-              <span>Roadmapping</span>
-              <span>Architecture</span>
-              <span>Hiring</span>
+        <!-- ── Technology Consulting ── -->
+        <div class="svc-item" data-svc="consulting">
+          <button class="svc-header" aria-expanded="false" aria-controls="detail-consulting">
+            <div class="svc-header-left">
+              <span class="svc-glyph">○</span>
+              <div>
+                <h3 class="svc-item-title">Technology Consulting</h3>
+                <p class="svc-item-summary">Strategic and technical guidance for leaders making technology decisions — without getting sold to. Vendor evaluation, roadmaps, and honest recommendations.</p>
+              </div>
+            </div>
+            <div class="svc-header-right">
+              <span class="svc-price-preview">from $1,500</span>
+              <span class="svc-toggle" aria-hidden="true">+</span>
+            </div>
+          </button>
+          <div class="svc-detail" id="detail-consulting" hidden>
+            <div class="svc-detail-inner">
+              <div class="svc-example">
+                <div class="svc-example-label">Example Engagement</div>
+                <p>A regional retailer is being pitched three different "AI analytics" platforms at $40K/year each and doesn't know how to evaluate the actual difference. We spend two weeks reviewing their data environment, auditing each vendor's real capability against their specific use case, and delivering a written recommendation memo with clear reasoning — not a scorecard, an actual decision. No commission, no referral fee.</p>
+              </div>
+              <div class="svc-deliverables-detail">
+                <div class="svc-deliverables-label">What you receive</div>
+                <ul>
+                  <li>Vendor evaluation report with documented reasoning</li>
+                  <li>Architecture or tooling recommendation for your specific situation</li>
+                  <li>Written decision memo your leadership team can act on</li>
+                  <li>Three monthly advisory calls post-delivery</li>
+                </ul>
+              </div>
+              <div class="svc-pricing">
+                <div class="svc-pricing-range">$1,500 – $3,500</div>
+                <div class="svc-pricing-note">Fixed scope · Fixed price · Delivered in 2–3 weeks</div>
+              </div>
+              <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
             </div>
           </div>
         </div>
@@ -255,11 +322,11 @@ import Base from '../layouts/Base.astro';
           <div class="inquiry-notes">
             <div class="inquiry-note">
               <span class="inquiry-note-label">Typical project size</span>
-              <span class="inquiry-note-val">$2,500 – $25,000</span>
+              <span class="inquiry-note-val">$1,500 – $5,000</span>
             </div>
             <div class="inquiry-note">
               <span class="inquiry-note-label">Timeline</span>
-              <span class="inquiry-note-val">2 – 12 weeks</span>
+              <span class="inquiry-note-val">1 – 6 weeks</span>
             </div>
             <div class="inquiry-note">
               <span class="inquiry-note-label">Availability</span>
@@ -380,82 +447,73 @@ import Base from '../layouts/Base.astro';
     background: linear-gradient(90deg, transparent, var(--border-default) 30%, var(--border-default) 70%, transparent);
   }
 
-  /* ---- SERVICES GRID ---- */
-  .svc-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+  /* ---- SERVICES LIST ---- */
+  .svc-intro {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-xl);
+  }
+
+  .svc-list {
+    display: flex;
+    flex-direction: column;
     gap: 1px;
     background: var(--border-subtle);
     border: 1px solid var(--border-default);
   }
 
-  .svc-card {
+  .svc-item {
     background: var(--bg-primary);
-    padding: var(--space-xl);
-    position: relative;
-    overflow: hidden;
-    transition: background var(--duration-base);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
   }
 
-  .svc-card:hover {
+  .svc-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xl);
+    padding: var(--space-xl);
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+    transition: background var(--duration-base);
+  }
+
+  .svc-header:hover {
     background: var(--bg-elevated);
   }
 
-  .svc-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--duration-slow) var(--ease-out);
+  .svc-item.open .svc-header {
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-default);
   }
 
-  .svc-card:hover::before {
-    transform: scaleX(1);
-  }
-
-  .svc-card--featured {
-    grid-column: 1 / -1;
-    flex-direction: row;
+  .svc-header-left {
+    display: flex;
     align-items: flex-start;
-    gap: var(--space-xl);
-  }
-
-  .svc-card--featured::before {
-    background: linear-gradient(90deg, var(--accent), var(--node-blue));
-    transform: scaleX(1);
-  }
-
-  .svc-card-glyph {
-    font-size: 36px;
-    line-height: 1;
-    opacity: 0.35;
-    flex-shrink: 0;
-    transition: opacity var(--duration-base);
-    margin-top: 4px;
-  }
-
-  .svc-card:hover .svc-card-glyph {
-    opacity: 0.7;
-  }
-
-  .svc-card--featured .svc-card-glyph {
-    font-size: 48px;
-    opacity: 0.5;
-  }
-
-  .svc-card-body {
+    gap: var(--space-lg);
     flex: 1;
   }
 
-  .svc-tag {
+  .svc-glyph {
+    font-size: 28px;
+    opacity: 0.4;
+    flex-shrink: 0;
+    margin-top: 4px;
+    transition: opacity var(--duration-base);
+    line-height: 1;
+  }
+
+  .svc-item.open .svc-glyph,
+  .svc-header:hover .svc-glyph {
+    opacity: 0.8;
+  }
+
+  .svc-item-tag {
     font-family: var(--font-mono);
     font-size: 9px;
     letter-spacing: 1.5px;
@@ -463,39 +521,118 @@ import Base from '../layouts/Base.astro';
     color: var(--accent);
     background: var(--accent-glow);
     border: 1px solid var(--border-accent);
-    padding: 3px 10px;
+    padding: 2px 8px;
     display: inline-block;
-    margin-bottom: var(--space-md);
+    margin-bottom: 6px;
   }
 
-  .svc-card-title {
+  .svc-item-title {
     font-family: var(--font-display);
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     letter-spacing: -0.3px;
-    margin-bottom: var(--space-sm);
+    margin-bottom: 6px;
+    transition: color var(--duration-fast);
   }
 
-  .svc-card--featured .svc-card-title {
-    font-size: 28px;
+  .svc-header:hover .svc-item-title,
+  .svc-item.open .svc-item-title {
+    color: var(--accent);
   }
 
-  .svc-card-desc {
-    font-size: 14px;
+  .svc-item-summary {
+    font-size: 13px;
     color: var(--text-tertiary);
-    line-height: 1.75;
+    line-height: 1.65;
+    max-width: 600px;
+  }
+
+  .svc-header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .svc-price-preview {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .svc-toggle {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--border-default);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 18px;
+    color: var(--text-tertiary);
+    transition: all var(--duration-base);
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .svc-item.open .svc-toggle {
+    content: '×';
+    border-color: var(--accent-muted);
+    color: var(--accent);
+    transform: rotate(45deg);
+  }
+
+  /* ---- EXPANDED DETAIL ---- */
+  .svc-detail {
+    overflow: hidden;
+  }
+
+  .svc-detail[hidden] {
+    display: none;
+  }
+
+  .svc-detail-inner {
+    padding: var(--space-xl);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+    background: var(--bg-elevated);
+  }
+
+  .svc-example {
+    grid-column: 1 / -1;
+  }
+
+  .svc-example-label,
+  .svc-deliverables-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-muted);
     margin-bottom: var(--space-md);
   }
 
-  .svc-deliverables {
+  .svc-example p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    border-left: 2px solid var(--border-accent);
+    padding-left: var(--space-lg);
+  }
+
+  .svc-deliverables-detail ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    margin-bottom: var(--space-md);
+    gap: 8px;
   }
 
-  .svc-deliverables li {
+  .svc-deliverables-detail li {
     font-size: 13px;
     color: var(--text-secondary);
     display: flex;
@@ -503,7 +640,7 @@ import Base from '../layouts/Base.astro';
     gap: 10px;
   }
 
-  .svc-deliverables li::before {
+  .svc-deliverables-detail li::before {
     content: '→';
     color: var(--accent-muted);
     font-family: var(--font-mono);
@@ -512,21 +649,33 @@ import Base from '../layouts/Base.astro';
     margin-top: 1px;
   }
 
-  .svc-tools {
+  .svc-pricing {
     display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+    flex-direction: column;
+    gap: 6px;
+    padding: var(--space-lg);
+    border: 1px solid var(--border-accent);
+    background: var(--accent-glow);
+    align-self: start;
   }
 
-  .svc-tools span {
+  .svc-pricing-range {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+  }
+
+  .svc-pricing-note {
     font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    background: var(--accent-glow);
+    font-size: 10px;
+    letter-spacing: 1px;
     color: var(--accent-muted);
-    border: 1px solid var(--border-subtle);
+  }
+
+  .svc-cta {
+    align-self: end;
   }
 
   /* ---- PROCESS ---- */
@@ -714,9 +863,47 @@ import Base from '../layouts/Base.astro';
 
   .form-feedback.success { color: var(--node-green); }
   .form-feedback.error   { color: var(--node-red); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    .svc-detail-inner { grid-template-columns: 1fr; }
+    .svc-pricing { align-self: auto; }
+    .svc-cta { align-self: auto; }
+    .process-track { flex-direction: column; }
+    .inquiry-layout { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
 </style>
 
 <script>
+  // ---- Service card accordion ----
+  document.querySelectorAll<HTMLButtonElement>('.svc-header').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.svc-item') as HTMLElement;
+      const detailId = btn.getAttribute('aria-controls');
+      const detail = detailId ? document.getElementById(detailId) : null;
+      const isOpen = item.classList.contains('open');
+
+      // Close all others
+      document.querySelectorAll('.svc-item.open').forEach((el) => {
+        el.classList.remove('open');
+        const otherBtn = el.querySelector<HTMLButtonElement>('.svc-header');
+        const otherId = otherBtn?.getAttribute('aria-controls');
+        const otherDetail = otherId ? document.getElementById(otherId) : null;
+        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        if (otherDetail) otherDetail.hidden = true;
+      });
+
+      if (!isOpen && detail) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        detail.hidden = false;
+        setTimeout(() => detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+      }
+    });
+  });
+
+  // ---- Contact form ----
   const form = document.getElementById('inquiry-form') as HTMLFormElement | null;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
   const feedback = document.getElementById('form-feedback') as HTMLElement | null;

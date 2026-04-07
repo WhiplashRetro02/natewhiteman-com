@@ -305,6 +305,26 @@ a {
   display: none;
 }
 
+.nav-links li a.nav-cta {
+  color: var(--bg-void);
+  background: var(--accent);
+  padding: 6px 14px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: background var(--duration-fast), transform var(--duration-fast);
+}
+
+.nav-links li a.nav-cta:hover {
+  background: var(--text-primary);
+  color: var(--bg-void);
+  transform: translateY(-1px);
+}
+
+.nav-links li a.nav-cta::after {
+  display: none;
+}
+
 /* --- HERO --- */
 .hero {
   min-height: 100vh;
@@ -980,6 +1000,34 @@ a {
 
 .footer-trail .accent {
   color: var(--accent-muted);
+}
+
+/* --- WORK BANNER --- */
+.work-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  padding: var(--space-xl) var(--space-2xl);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-accent);
+  flex-wrap: wrap;
+}
+
+.work-banner-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-muted);
+  margin-bottom: 6px;
+}
+
+.work-banner-heading {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
 }
 
 /* --- BLOG POST LAYOUT --- */
