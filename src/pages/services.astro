@@ -78,7 +78,10 @@ import Base from '../layouts/Base.astro';
                 <div class="svc-pricing-range">$250 – $2,000</div>
                 <div class="svc-pricing-note">Fixed scope · Fixed price · Delivered in 2–4 weeks</div>
               </div>
-              <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
+              <div class="svc-sample-row">
+                <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
+                <a href="/samples/property-dashboard" target="_blank" class="btn btn--ghost svc-sample-link">View sample &nearr;</a>
+              </div>
             </div>
           </div>
         </div>
@@ -117,7 +120,10 @@ import Base from '../layouts/Base.astro';
                 <div class="svc-pricing-range">$150 – $1,500</div>
                 <div class="svc-pricing-note">Fixed scope · Fixed price · Delivered in 1–3 weeks</div>
               </div>
-              <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
+              <div class="svc-sample-row">
+                <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
+                <a href="/samples/property-dashboard" target="_blank" class="btn btn--ghost svc-sample-link">View sample &nearr;</a>
+              </div>
             </div>
           </div>
         </div>
@@ -156,7 +162,10 @@ import Base from '../layouts/Base.astro';
                 <div class="svc-pricing-range">$500 – $5,000</div>
                 <div class="svc-pricing-note">Fixed scope · Fixed price · Delivered in 3–6 weeks</div>
               </div>
-              <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
+              <div class="svc-sample-row">
+                <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
+                <a href="/samples/property-dashboard" target="_blank" class="btn btn--ghost svc-sample-link">View sample &nearr;</a>
+              </div>
             </div>
           </div>
         </div>
@@ -234,7 +243,10 @@ import Base from '../layouts/Base.astro';
                 <div class="svc-pricing-range">$45 / hr</div>
                 <div class="svc-pricing-note">Hourly · Flexible scope · Minimum 5 hours</div>
               </div>
-              <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
+              <div class="svc-sample-row">
+                <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
+                <a href="/samples/vendor-evaluation" target="_blank" class="btn btn--ghost svc-sample-link">View sample &nearr;</a>
+              </div>
             </div>
           </div>
         </div>
@@ -273,7 +285,10 @@ import Base from '../layouts/Base.astro';
                 <div class="svc-pricing-range">$100 – $1,000</div>
                 <div class="svc-pricing-note">Fixed scope · Fixed price · Delivered in 1–3 weeks</div>
               </div>
-              <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
+              <div class="svc-sample-row">
+                <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
+                <a href="/samples/crm-dashboard" target="_blank" class="btn btn--ghost svc-sample-link">View sample &nearr;</a>
+              </div>
             </div>
           </div>
         </div>
@@ -312,7 +327,10 @@ import Base from '../layouts/Base.astro';
                 <div class="svc-pricing-range">$200 – $500</div>
                 <div class="svc-pricing-note">Fixed scope · Fixed price · Delivered in 1–2 weeks</div>
               </div>
-              <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
+              <div class="svc-sample-row">
+                <a href="#inquiry" class="btn btn--primary svc-cta">Start this project &rarr;</a>
+                <a href="/" target="_blank" class="btn btn--ghost svc-sample-link">View sample &nearr;</a>
+              </div>
             </div>
           </div>
         </div>
@@ -752,8 +770,21 @@ import Base from '../layouts/Base.astro';
     color: var(--accent-muted);
   }
 
-  .svc-cta {
+  .svc-sample-row {
     align-self: end;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .svc-cta {
+    align-self: stretch;
+  }
+
+  .svc-sample-link {
+    align-self: stretch;
+    text-align: center;
+    font-size: 11px;
   }
 
   /* ---- PROCESS ---- */
@@ -946,6 +977,7 @@ import Base from '../layouts/Base.astro';
   @media (max-width: 768px) {
     .svc-detail-inner { grid-template-columns: 1fr; }
     .svc-pricing { align-self: auto; }
+    .svc-sample-row { align-self: auto; }
     .svc-cta { align-self: auto; }
     .process-track { flex-direction: column; }
     .inquiry-layout { grid-template-columns: 1fr; }

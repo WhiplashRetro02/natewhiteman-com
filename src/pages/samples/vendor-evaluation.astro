@@ -1,0 +1,50 @@
+---
+import VendorEvaluation from '../../../portfolio-samples/sample_vendor_evaluation.jsx';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Sample — Technology Consulting Deliverable</title>
+    <meta name="robots" content="noindex" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body { background: #0a0c0f; }
+      .back-bar {
+        position: fixed;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        background: #10141acc;
+        border: 1px solid #2a3c50;
+        backdrop-filter: blur(12px);
+        padding: 8px 18px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        border-radius: 40px;
+      }
+      .back-bar a {
+        color: #c8a040;
+        text-decoration: none;
+        letter-spacing: 0.1em;
+      }
+      .back-bar a:hover { color: #e8c060; }
+      .back-bar span { color: #3a5060; }
+    </style>
+  </head>
+  <body>
+    <VendorEvaluation client:only="react" />
+    <div class="back-bar">
+      <span>PORTFOLIO SAMPLE</span>
+      <span>·</span>
+      <a href="/services#services">← Back to services</a>
+    </div>
+  </body>
+</html>
