@@ -1,0 +1,207 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Auto Dealers & Service Centers — Nate Whiteman"
+  description="Inventory analytics, service bay utilization dashboards, and sales performance reporting for auto dealerships and service centers in East Tennessee."
+>
+
+  <div class="back-bar">
+    <a href="/services" class="back-link">← All services</a>
+  </div>
+
+  <section class="stub-hero">
+    <div class="container">
+      <div class="stub-eyebrow">East Tennessee · Auto Dealers &amp; Service Centers</div>
+      <h1 class="stub-title">Turn your DMS data into decisions you can actually make</h1>
+      <p class="stub-lead">
+        Auto dealerships and service centers run on data — days-in-inventory, gross per
+        unit, service advisor performance, parts turnover — but getting that data out of
+        your DMS into something readable takes a data analyst or a lot of manual pulling.
+        I automate that middle step.
+      </p>
+      <a href="/services#inquiry" class="btn btn--primary">Talk about your dealership →</a>
+    </div>
+  </section>
+
+  <section class="stub-uses">
+    <div class="container container--narrow">
+      <h2 class="stub-uses-heading">What I build for auto dealers &amp; service centers</h2>
+      <ul class="stub-uses-list">
+        <li>
+          <strong>Inventory aging dashboard</strong> — every unit on the lot with days-in-stock,
+          price history, lead count, and flagged at 30/45/60 day thresholds so you're
+          not doing mental math on markdown decisions.
+        </li>
+        <li>
+          <strong>Gross &amp; margin tracker</strong> — front-end gross, back-end gross, and
+          finance penetration by salesperson, month, and vehicle type. Actual margins,
+          not just unit counts.
+        </li>
+        <li>
+          <strong>Service bay utilization report</strong> — technician hours flagged, hours
+          billed, effective labor rate, and advisor write-up count — daily or weekly.
+        </li>
+        <li>
+          <strong>Parts turnover analysis</strong> — which SKUs are moving, which are sitting,
+          and what your effective parts gross looks like without staring at obsolescence reports.
+        </li>
+        <li>
+          <strong>Lead source attribution</strong> — which ad channels, websites, and walk-ins
+          are converting to sold units so you can stop guessing where to put the marketing budget.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="stub-cta">
+    <div class="container container--narrow">
+      <p class="stub-cta-note">
+        Detailed page for auto dealers &amp; service centers is being built out. In the meantime,
+        reach out directly — I can work with CDK, Reynolds &amp; Reynolds, DealerSocket,
+        or flat CSV exports from your DMS.
+      </p>
+      <div class="stub-cta-actions">
+        <a href="/services#inquiry" class="btn btn--primary">Start a conversation →</a>
+        <a href="/services" class="btn btn--ghost">All services</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .back-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 12, 15, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 12px 0;
+  }
+
+  .back-bar .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+  }
+
+  .back-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--duration-base);
+  }
+
+  .back-link:hover { color: var(--accent); }
+
+  .stub-hero {
+    padding: clamp(80px, 10vw, 140px) 0 clamp(60px, 8vw, 100px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .stub-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent-muted);
+    text-transform: uppercase;
+    margin-bottom: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .stub-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+
+  .stub-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 62px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -2px;
+    margin-bottom: var(--space-xl);
+    max-width: 720px;
+  }
+
+  .stub-lead {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .stub-uses {
+    padding: clamp(60px, 8vw, 100px) 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .stub-uses-heading {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 700;
+    margin-bottom: var(--space-2xl);
+    color: var(--text-primary);
+  }
+
+  .stub-uses-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .stub-uses-list li {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    padding-left: var(--space-xl);
+    border-left: 2px solid var(--border-default);
+  }
+
+  .stub-uses-list li strong {
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--font-display);
+  }
+
+  .stub-cta {
+    padding: clamp(60px, 8vw, 100px) 0;
+  }
+
+  .stub-cta-note {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2xl);
+    padding: var(--space-xl);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--accent);
+    background: var(--bg-elevated);
+  }
+
+  .stub-cta-actions {
+    display: flex;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .container--narrow {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+  }
+</style>
