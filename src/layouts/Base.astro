@@ -13,6 +13,8 @@ const {
   ogImage = '/og-image.png',
 } = Astro.props;
 
+const plausibleUrl = import.meta.env.PUBLIC_PLAUSIBLE_URL ?? '';
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -77,6 +79,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   })} />
 
   <!-- Styles injected by Astro via frontmatter import -->
+
+  <!-- Plausible Analytics (self-hosted) -->
+  {plausibleUrl && (
+    <script
+      defer
+      data-domain="natewhiteman.com"
+      src={`${plausibleUrl}/js/script.js`}
+    />
+  )}
 </head>
 <body>
   <!-- Ambient background layers -->
@@ -119,6 +130,118 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       Cognitive Science &rarr; Data &rarr; AI &rarr; <span class="accent">Leadership</span>
     </span>
   </footer>
+
+  <!-- Identity Pixel -->
+  <script is:inline>
+    (function() {
+      function uuid() {
+        return (typeof crypto !== 'undefined' && crypto.randomUUID)
+          ? crypto.randomUUID()
+          : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+              var r = Math.random() * 16 | 0;
+              return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+      }
+
+      // Persistent anonymous ID (survives sessions)
+      var anonId = localStorage.getItem('_nw_aid');
+      if (!anonId) { anonId = uuid(); localStorage.setItem('_nw_aid', anonId); }
+
+      // Session ID (resets each browser session)
+      var sessionId = sessionStorage.getItem('_nw_sid');
+      if (!sessionId) { sessionId = uuid(); sessionStorage.setItem('_nw_sid', sessionId); }
+
+      // In-session event buffer (keeps last 30 events)
+      var events = [];
+      try { events = JSON.parse(sessionStorage.getItem('_nw_ev') || '[]'); } catch(e) {}
+
+      function saveEvents() {
+        try { sessionStorage.setItem('_nw_ev', JSON.stringify(events.slice(-30))); } catch(e) {}
+      }
+
+      function track(event, props) {
+        events.push({ event: event, props: props || {}, url: window.location.href, ts: new Date().toISOString() });
+        saveEvents();
+      }
+
+      // Called when user submits the contact form (anonymous → known)
+      function identify(email, props) {
+        fetch('/api/track', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            anonId: anonId,
+            sessionId: sessionId,
+            email: email,
+            props: props || {},
+            events: events,
+            ctx: {
+              ua: navigator.userAgent,
+              lang: navigator.language,
+              tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+              ref: document.referrer,
+              sw: screen.width,
+              sh: screen.height
+            },
+            ts: new Date().toISOString()
+          })
+        }).catch(function() {});
+      }
+
+      track('page_view', { title: document.title });
+      window.nwPixel = { track: track, identify: identify, anonId: anonId };
+    })();
+  </script>
+
+  <!-- Plausible Custom Event Tracking -->
+  <script is:inline>
+    // Safe wrapper — queues events if Plausible script hasn't loaded yet (standard pattern)
+    window.plausible = window.plausible || function() {
+      (window.plausible.q = window.plausible.q || []).push(arguments);
+    };
+
+    (function() {
+      var path = window.location.pathname;
+
+      // 1. Service page view — fires on any /services/* page
+      if (path.startsWith('/services/')) {
+        var vertical = path.split('/')[2] || 'unknown';
+        window.plausible('service_page_view', { props: { vertical: vertical } });
+      }
+
+      // 2. Portfolio sample view — fires on any /samples/* page
+      if (path.startsWith('/samples/')) {
+        var sampleName = path.split('/')[2] || 'unknown';
+        window.plausible('sample_view', { props: { sample_name: sampleName } });
+      }
+
+      // 3. Blog read — fires at 60% scroll depth on /blog/* pages
+      if (path.startsWith('/blog/')) {
+        var blogRead = false;
+        var postSlug = path.split('/')[2] || 'unknown';
+        function handleBlogScroll() {
+          if (blogRead) return;
+          var scrolled = window.scrollY + window.innerHeight;
+          var total = document.documentElement.scrollHeight;
+          if (total > 0 && scrolled / total >= 0.6) {
+            blogRead = true;
+            window.plausible('blog_read', { props: { post_slug: postSlug } });
+            window.removeEventListener('scroll', handleBlogScroll);
+          }
+        }
+        window.addEventListener('scroll', handleBlogScroll, { passive: true });
+      }
+
+      // 4. CTA click tracking — any element with .nav-cta, .cta-btn, or data-cta attribute
+      document.addEventListener('click', function(e) {
+        var el = e.target && e.target.closest('[data-cta], .nav-cta, .cta-btn, .cta-primary');
+        if (el) {
+          var label = (el.dataset && el.dataset.cta) || el.textContent.trim().slice(0, 60);
+          window.plausible('cta_click', { props: { cta_label: label, page: path } });
+        }
+      });
+    })();
+  </script>
 
   <!-- Scripts -->
   <script is:inline>

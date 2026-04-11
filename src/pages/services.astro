@@ -428,6 +428,78 @@ import Base from '../layouts/Base.astro';
     </div>
   </section>
 
+  <!-- ============ INDUSTRIES WE SERVE ============ -->
+  <section class="section industries-section" id="industries">
+    <div class="container">
+      <div class="industries-header animate-in">
+        <div class="industries-eyebrow">Industries I work with</div>
+        <h2 class="industries-title">Built for East Tennessee business</h2>
+        <p class="industries-lead">
+          Based in East Tennessee and specialized in the business types that run this region —
+          each with its own data challenges, tool stacks, and reporting pain points.
+        </p>
+      </div>
+
+      <div class="industries-grid animate-in">
+
+        <a href="/services/real-estate" class="industry-tile industry-tile--live">
+          <div class="industry-tile-icon">🏘️</div>
+          <div class="industry-tile-body">
+            <div class="industry-tile-name">Real Estate</div>
+            <div class="industry-tile-desc">Brokerages, investors &amp; house flippers</div>
+          </div>
+          <div class="industry-tile-badge">Explore →</div>
+        </a>
+
+        <a href="/services/hvac" class="industry-tile">
+          <div class="industry-tile-icon">🔧</div>
+          <div class="industry-tile-body">
+            <div class="industry-tile-name">HVAC &amp; Home Services</div>
+            <div class="industry-tile-desc">Technician dispatch, seasonal revenue &amp; job costing</div>
+          </div>
+          <div class="industry-tile-arrow">→</div>
+        </a>
+
+        <a href="/services/construction" class="industry-tile">
+          <div class="industry-tile-icon">🏗️</div>
+          <div class="industry-tile-body">
+            <div class="industry-tile-name">Construction &amp; Contractors</div>
+            <div class="industry-tile-desc">Project cost tracking, bids, materials &amp; subcontractors</div>
+          </div>
+          <div class="industry-tile-arrow">→</div>
+        </a>
+
+        <a href="/services/healthcare" class="industry-tile">
+          <div class="industry-tile-icon">🏥</div>
+          <div class="industry-tile-body">
+            <div class="industry-tile-name">Healthcare &amp; Medical</div>
+            <div class="industry-tile-desc">Patient flow, billing dashboards &amp; referral analytics</div>
+          </div>
+          <div class="industry-tile-arrow">→</div>
+        </a>
+
+        <a href="/services/auto" class="industry-tile">
+          <div class="industry-tile-icon">🚗</div>
+          <div class="industry-tile-body">
+            <div class="industry-tile-name">Auto Dealers &amp; Service</div>
+            <div class="industry-tile-desc">Inventory, service bay utilization &amp; sales analytics</div>
+          </div>
+          <div class="industry-tile-arrow">→</div>
+        </a>
+
+        <a href="/services/legal" class="industry-tile">
+          <div class="industry-tile-icon">⚖️</div>
+          <div class="industry-tile-body">
+            <div class="industry-tile-name">Legal &amp; Law Firms</div>
+            <div class="industry-tile-desc">Billable hours, case tracking &amp; client intake analytics</div>
+          </div>
+          <div class="industry-tile-arrow">→</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ============ ROI CALCULATOR (AI-003) ============ -->
   <section class="section roi-section" id="calculator">
     <div class="container container--narrow">
@@ -1757,6 +1829,116 @@ import Base from '../layouts/Base.astro';
     text-underline-offset: 3px;
   }
 
+  /* ---- INDUSTRIES ---- */
+  .industries-header {
+    max-width: 640px;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .industries-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-muted);
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .industries-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    flex-shrink: 0;
+  }
+
+  .industries-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: var(--space-md);
+  }
+
+  .industries-lead {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+  }
+
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border-default);
+    border: 1px solid var(--border-default);
+  }
+
+  .industry-tile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-xl);
+    background: var(--bg-card);
+    text-decoration: none;
+    color: inherit;
+    transition: background var(--duration-base);
+  }
+
+  .industry-tile:hover {
+    background: var(--bg-card-hover);
+  }
+
+  .industry-tile--live {
+    border-top: 2px solid var(--accent);
+  }
+
+  .industry-tile-icon {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .industry-tile-body {
+    flex: 1;
+  }
+
+  .industry-tile-name {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+  }
+
+  .industry-tile-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .industry-tile-badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--accent);
+  }
+
+  .industry-tile-arrow {
+    font-size: 14px;
+    color: var(--text-tertiary);
+    transition: color var(--duration-base), transform var(--duration-base);
+    display: inline-block;
+  }
+
+  .industry-tile:hover .industry-tile-arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+
   /* ---- RESPONSIVE ---- */
   @media (max-width: 768px) {
     .svc-detail-inner { grid-template-columns: 1fr; }
@@ -1773,6 +1955,11 @@ import Base from '../layouts/Base.astro';
     .fit-grid { grid-template-columns: 1fr; }
     .fit-divider { display: none; }
     .bap-dash-kpis { grid-template-columns: repeat(3, 1fr); }
+    .industries-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .industries-grid { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -1873,6 +2060,10 @@ import Base from '../layouts/Base.astro';
       const data = await res.json() as { success: boolean; error?: string };
 
       if (data.success) {
+        // Fire-and-forget identity resolution before resetting form
+        if (typeof window !== 'undefined' && (window as Window & { nwPixel?: { identify: (e: string, p: object) => void } }).nwPixel) {
+          (window as Window & { nwPixel: { identify: (e: string, p: object) => void } }).nwPixel.identify(email, { name, source: 'inquiry_form' });
+        }
         feedback.className = 'form-feedback success';
         feedback.textContent = "Got it — I'll be in touch within a couple of business days.";
         form.reset();
