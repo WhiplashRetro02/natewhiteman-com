@@ -1,3 +1,4 @@
+// https://astro.build/config
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
