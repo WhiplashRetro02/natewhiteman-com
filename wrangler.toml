@@ -1,0 +1,11 @@
+# Cloudflare Pages / Workers configuration
+# https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+
+name = "natewhiteman-com"
+
+# 2025-08-15 is the date the `expose_global_message_channel` flag became
+# enabled by default in the Workers runtime. react-dom/server.browser calls
+# `new MessageChannel()` at module-initialisation time, which causes Worker
+# validation to fail on older runtimes. This date ensures MessageChannel and
+# MessagePort are available as globals so the Astro SSR bundle loads cleanly.
+compatibility_date = "2025-08-15"
