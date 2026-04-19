@@ -39,16 +39,45 @@ interface CloudflareEnv {
   DB?: D1Database;
 }
 
+const MAX_BODY_BYTES = 32_768; // 32 KB
+const MAX_EVENTS = 50;
+const MAX_STRING = 500;
+
 export const POST: APIRoute = async ({ request, locals }) => {
+  // Enforce payload size before parsing
+  const contentLength = Number(request.headers.get('content-length') ?? 0);
+  if (contentLength > MAX_BODY_BYTES) {
+    return json({ success: false, error: 'Payload too large' }, 413);
+  }
+
   let body: TrackBody;
   try {
-    body = await request.json() as TrackBody;
+    const text = await request.text();
+    if (text.length > MAX_BODY_BYTES) {
+      return json({ success: false, error: 'Payload too large' }, 413);
+    }
+    body = JSON.parse(text) as TrackBody;
   } catch {
     return json({ success: false, error: 'Invalid request' }, 400);
   }
 
   if (!body.anonId || !body.email) {
     return json({ success: false, error: 'Missing required fields' }, 400);
+  }
+
+  // Field length caps
+  if (
+    String(body.anonId).length > MAX_STRING ||
+    String(body.email).length > MAX_STRING ||
+    (body.sessionId && String(body.sessionId).length > MAX_STRING) ||
+    (body.ts && String(body.ts).length > 64)
+  ) {
+    return json({ success: false, error: 'Invalid field length' }, 400);
+  }
+
+  // Cap events array
+  if (Array.isArray(body.events) && body.events.length > MAX_EVENTS) {
+    body = { ...body, events: body.events.slice(0, MAX_EVENTS) };
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

@@ -38,6 +38,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return json({ success: false, error: 'All fields are required' }, 400);
   }
 
+  if (name.trim().length > 200 || email.trim().length > 320 || message.trim().length > 5000) {
+    return json({ success: false, error: 'One or more fields exceed maximum length' }, 400);
+  }
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return json({ success: false, error: 'Invalid email address' }, 400);
