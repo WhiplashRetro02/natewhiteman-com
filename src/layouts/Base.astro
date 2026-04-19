@@ -107,13 +107,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <!-- Navigation -->
   <nav class="site-nav" id="site-nav">
     <a href="/" class="nav-wordmark">nate<span class="wm-accent">whiteman</span>.com</a>
-    <ul class="nav-links">
-      <li><a href="/#about">About</a></li>
-      <li><a href="/#systems">Systems</a></li>
-      <li><a href="/#projects">Projects</a></li>
-      <li><a href="/#writing">Thinking Out Loud</a></li>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
       <li><a href="/services">Services</a></li>
-      <li><a href="/annabeth" class="nav-current-project">Current Project</a></li>
+      <li><a href="/knoxville">Knoxville</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#writing">Thinking Out Loud</a></li>
       <li><a href="/services#inquiry" class="nav-cta">Work with me &rarr;</a></li>
     </ul>
   </nav>
@@ -126,6 +129,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <!-- Footer -->
   <footer class="site-footer container">
     <span class="footer-text">&copy; {new Date().getFullYear()} Nathaniel Whiteman</span>
+    <nav class="footer-links" aria-label="Secondary navigation">
+      <a href="/#systems">Systems</a>
+      <a href="/#projects">Projects</a>
+      <a href="/annabeth">Annabeth</a>
+      <a href="/#writing">Blog</a>
+    </nav>
     <span class="footer-trail">
       Cognitive Science &rarr; Data &rarr; AI &rarr; <span class="accent">Leadership</span>
     </span>
@@ -275,6 +284,54 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         }
       });
     });
+
+    // Mobile hamburger menu
+    (function() {
+      var hamburger = document.getElementById('nav-hamburger');
+      var navLinks = document.getElementById('nav-links');
+      var mobileNav = document.getElementById('site-nav');
+
+      function openMenu() {
+        mobileNav.classList.add('nav-mobile-open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        mobileNav.classList.remove('nav-mobile-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      if (hamburger) {
+        hamburger.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (mobileNav.classList.contains('nav-mobile-open')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+      }
+
+      // Close when a nav link is clicked
+      if (navLinks) {
+        navLinks.querySelectorAll('a').forEach(function(link) {
+          link.addEventListener('click', function() {
+            closeMenu();
+          });
+        });
+      }
+
+      // Close when clicking outside the nav
+      document.addEventListener('click', function(e) {
+        if (mobileNav && mobileNav.classList.contains('nav-mobile-open')) {
+          if (!mobileNav.contains(e.target)) {
+            closeMenu();
+          }
+        }
+      });
+    })();
   </script>
 </body>
 </html>
