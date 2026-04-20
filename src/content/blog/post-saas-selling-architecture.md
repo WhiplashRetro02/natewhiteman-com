@@ -42,9 +42,9 @@ Instead of: "Here's a CRM tool. Configure it for your business."
 
 The new model is: "Here's a system architecture that handles lead-to-close workflows. It's composable — plug in whatever CRM, email, and analytics tools you want. The value is in the workflow design and the data architecture, not the specific tools."
 
-This is what's happening with agentic AI. When I build a system like Annabeth — my OSINT operator console — I'm not building a "product" in the SaaS sense. I'm building an *architecture*: an orchestration layer that coordinates between multiple tools (Neo4j, Claude, HIBP, DNS analyzers, social media APIs), manages data flow between them, and encodes investigative workflows that are independent of any single tool.
+This is what's happening with agentic AI. When I build a custom intelligence workflow system, I'm not building a "product" in the SaaS sense. I'm building an *architecture*: an orchestration layer that coordinates between multiple tools (Neo4j, Claude, HIBP, DNS analyzers, social media APIs), manages data flow between them, and encodes investigative workflows that are independent of any single tool.
 
-If HIBP shuts down tomorrow, I swap in a different breach database. If Neo4j gets replaced by a better graph database, I swap the data layer. The workflow — "ingest intelligence, build entity graph, analyze attack paths, deploy SE campaign, capture evidence" — doesn't change. The architecture is the product. The tools are interchangeable.
+If HIBP shuts down tomorrow, I swap in a different breach database. If Neo4j gets replaced by a better graph database, I swap the data layer. The workflow doesn't change. The architecture is the product. The tools are interchangeable.
 
 ## Why This Matters for AI
 
@@ -75,8 +75,6 @@ If the value is in architecture and workflows rather than tools, what does the b
 This is the thesis behind everything in my portfolio:
 
 The **Graph RAG Engine** is a retrieval architecture, not a Neo4j product. Swap the graph database, swap the LLM, swap the embedding model — the knowledge graph pipeline pattern persists.
-
-**Annabeth** is an investigation workflow architecture, not an OSINT tool. The orchestration layer — tiered autonomy, entity graphing, evidence custody, campaign management — is domain-specific knowledge encoded as software. The specific APIs it calls are replaceable.
 
 The **deal analysis suite** is a financial modeling architecture, not a calculator. The scenario modeling pattern (input assumptions, project outcomes, compare strategies) applies to any domain where you're making capital allocation decisions under uncertainty.
 

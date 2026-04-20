@@ -82,4 +82,4 @@ That starts with admitting what you don't know yet.
 
 ---
 
-*This is part of my ongoing writing about leadership in technical organizations. My perspective comes from leading the UCLA Interfraternity Council (30+ chapters, multi-stakeholder governance), building AI systems at CGI, and studying how humans process information through my cognitive science background. More at [natewhiteman.com](/).*
+*This is part of my ongoing writing about leadership in technical organizations. My perspective comes from leading the UCLA Interfraternity Council (30+ chapters, multi-stakeholder governance) and studying how humans process information through my cognitive science background. More at [natewhiteman.com](/).*

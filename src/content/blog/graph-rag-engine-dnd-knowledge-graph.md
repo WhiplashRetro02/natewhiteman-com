@@ -75,4 +75,4 @@ Either way, you stop scrolling through Google Docs while your table waits.
 
 ---
 
-*The Graph RAG Engine is available on [GitHub](https://github.com/WhiplashRetro02). Built with Neo4j, Python, and a locally hosted LLM. The same architecture pattern powers the entity graph in [Annabeth](/annabeth), my OSINT operator console.*
+*The Graph RAG Engine is available on [GitHub](https://github.com/WhiplashRetro02). Built with Neo4j, Python, and a locally hosted LLM.*
