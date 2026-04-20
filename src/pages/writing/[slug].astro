@@ -24,7 +24,11 @@ const dateFormat = (date: Date) =>
 <Base
   title={`${post.data.title} — Nate Whiteman`}
   description={post.data.description}
-  ogImage={post.data.heroImage}
+  ogImage={post.data.heroImage ?? '/og-image.jpg'}
+  ogType="article"
+  ogImageWidth="1200"
+  ogImageHeight="630"
+  publishedTime={post.data.date.toISOString()}
 >
   <article class="container container--narrow">
     <header class="post-header">
